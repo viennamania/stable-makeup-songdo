@@ -795,10 +795,22 @@ export default function SendUsdt({ params }: any) {
                 <ConnectButton
                   client={client}
                   wallets={wallets}
+
+
+                  accountAbstraction={{
+                    chain: chain === "ethereum" ? ethereum :
+                            chain === "polygon" ? polygon :
+                            chain === "arbitrum" ? arbitrum :
+                            chain === "bsc" ? bsc : arbitrum,
+                    sponsorGas: true
+                  }}
+
+                  /*
                   chain={chain === "ethereum" ? ethereum :
                           chain === "polygon" ? polygon :
                           chain === "arbitrum" ? arbitrum :
                           chain === "bsc" ? bsc : arbitrum}
+                  */
 
                   theme={"light"}
 
