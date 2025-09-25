@@ -17,10 +17,6 @@ export async function POST(request: NextRequest) {
     walletAddress: walletAddress,
   });
 
-  //console.log("result", result);
-
-
-
   return NextResponse.json({
 
     result,
