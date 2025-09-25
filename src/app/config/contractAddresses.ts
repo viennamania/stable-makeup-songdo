@@ -20,6 +20,9 @@ export const bscContractAddressUSDT = "0x55d398326f99059fF775485246999027B319795
 // bscContractAddressMKRW
 export const bscContractAddressMKRW = "0xEb0a5ea0001Aa9f419BbaF8ceDad265A60f0B10f"; // MKRW on BSC
 
+// arbitrumContractAddressCKEC
+export const arbitrumContractAddressCKEC = "0xcba5232e244652d07009B68c02DBEc6455A25beF"; // CKEC on Arbitrum
+
 
 
 

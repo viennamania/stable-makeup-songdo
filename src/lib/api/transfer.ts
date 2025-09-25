@@ -212,7 +212,7 @@ export async function getTransferByWalletAddress(data: any) {
         }
     */
 
-    const collectionUserTransfers = client.db('damoa').collection('userTransfers');
+    const collectionUserTransfers = client.db(dbName).collection('userTransfers');
 
     const userTransfers = await collectionUserTransfers
     .find({ "user.walletAddress": data.walletAddress })
