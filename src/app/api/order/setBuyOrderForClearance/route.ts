@@ -11,7 +11,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 
 export async function POST(request: NextRequest) {

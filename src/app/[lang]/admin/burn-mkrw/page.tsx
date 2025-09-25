@@ -69,7 +69,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 
 
@@ -155,14 +155,14 @@ export default function SendUsdt({ params }: any) {
 
 
 
-  const contractMKRW = getContract({
+  const contractCKEC = getContract({
 
     // the client you have created via `createThirdwebClient()`
     client,
     // the chain the contract is deployed on
     chain: chain === "bsc" ? bsc : bsc,
 
-    address: bscContractAddressMKRW,
+    address: arbitrumContractAddressCKEC,
 
     // OPTIONAL: the contract's abi
     //abi: [...],
@@ -332,7 +332,7 @@ export default function SendUsdt({ params }: any) {
     // get the balance
     const getMkrwBalance = async () => {
       const result = await balanceOf({
-        contract: contractMKRW,
+        contract: contractCKEC,
         address: address,
       });
   
@@ -345,7 +345,7 @@ export default function SendUsdt({ params }: any) {
       if (address) getMkrwBalance();
     } , 5000);
     return () => clearInterval(interval);
-  }, [address, contractMKRW]);
+  }, [address, contractCKEC]);
 
 
 
@@ -525,7 +525,7 @@ export default function SendUsdt({ params }: any) {
         const transaction = transfer({
             //contract,
 
-            contract: contractMKRW,
+            contract: contractCKEC,
 
             to: recipient.walletAddress,
             amount: amount,
@@ -566,7 +566,7 @@ export default function SendUsdt({ params }: any) {
           // get the balance
 
           const result = await balanceOf({
-            contract: contractMKRW,
+            contract: contractCKEC,
             address: address || "",
           });
 
@@ -608,7 +608,7 @@ export default function SendUsdt({ params }: any) {
       setBurning(true);
       // erc20 burn
       const transaction = burn({
-        contract: contractMKRW as any,
+        contract: contractCKEC as any,
         amount: BigInt(burnAmount) * 10n ** 18n
       });
 

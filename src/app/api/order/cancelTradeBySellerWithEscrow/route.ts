@@ -63,7 +63,7 @@ import {
 const chain = process.env.NEXT_PUBLIC_CHAIN || "arbitrum";
 
 import {
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "../../../config/contractAddresses";
 
 
@@ -304,7 +304,7 @@ export async function POST(request: NextRequest) {
     const contract = getContract({
       client,
       chain: chain === "bsc" ? bsc : chain === "arbitrum" ? arbitrum : polygon,
-      address: bscContractAddressMKRW, // MKRW on BSC
+      address: arbitrumContractAddressCKEC, // MKRW on BSC
     });
 
     const transaction = transfer({

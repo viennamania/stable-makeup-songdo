@@ -100,7 +100,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 
 
@@ -245,7 +245,7 @@ export default function Index({ params }: any) {
 
 
 
-  const contractMKRW = getContract({
+  const contractCKEC = getContract({
     // the client you have created via `createThirdwebClient()`
     client,
 
@@ -256,10 +256,10 @@ export default function Index({ params }: any) {
            chain === "bsc" ? bsc : arbitrum,
 
     // the contract's address
-    address: chain === "ethereum" ? bscContractAddressMKRW :
-            chain === "polygon" ? bscContractAddressMKRW :
-            chain === "arbitrum" ? bscContractAddressMKRW :
-            chain === "bsc" ? bscContractAddressMKRW : bscContractAddressMKRW,
+    address: chain === "ethereum" ? arbitrumContractAddressCKEC :
+            chain === "polygon" ? arbitrumContractAddressCKEC :
+            chain === "arbitrum" ? arbitrumContractAddressCKEC :
+            chain === "bsc" ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
 
     // OPTIONAL: the contract's abi
     //abi: [...],

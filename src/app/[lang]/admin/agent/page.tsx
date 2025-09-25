@@ -92,7 +92,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 
 

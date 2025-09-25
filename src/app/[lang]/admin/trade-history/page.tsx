@@ -95,7 +95,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 
 import * as XLSX from "xlsx";

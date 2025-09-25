@@ -92,7 +92,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 
 import { paymentUrl } from "../../config/payment";
@@ -196,7 +196,7 @@ export default function Index({ params }: any) {
 
 
 
-  const contractMKRW = getContract({
+  const contractCKEC = getContract({
     // the client you have created via `createThirdwebClient()`
     client,
 
@@ -204,7 +204,7 @@ export default function Index({ params }: any) {
     chain: bsc,
 
     // the contract's address
-    address: bscContractAddressMKRW,
+    address: arbitrumContractAddressCKEC,
 
     // OPTIONAL: the contract's abi
     //abi: [...],
@@ -435,7 +435,7 @@ export default function Index({ params }: any) {
     // get the balance
     const getMkrwBalance = async () => {
       const result = await balanceOf({
-        contract: contractMKRW,
+        contract: contractCKEC,
         address: address,
       });
   
@@ -448,7 +448,7 @@ export default function Index({ params }: any) {
       if (address) getMkrwBalance();
     } , 5000);
     return () => clearInterval(interval);
-  }, [address, contractMKRW]);
+  }, [address, contractCKEC]);
 
 
 

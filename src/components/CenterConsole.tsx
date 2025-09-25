@@ -97,7 +97,7 @@ import {
   arbitrumContractAddressUSDT,
   bscContractAddressUSDT,
 
-  bscContractAddressMKRW,
+  arbitrumContractAddressCKEC,
 } from "@/app/config/contractAddresses";
 import { add } from "thirdweb/extensions/farcaster/keyGateway";
 import { toast } from "react-hot-toast";
