@@ -785,67 +785,6 @@ export default function SendUsdt({ params }: any) {
                 </span>
             </div>
 
-            
-            {/*
-            {!address && (
-            */}
-
-
-
-                <ConnectButton
-                  client={client}
-                  wallets={wallets}
-
-
-                  accountAbstraction={{
-                    chain: chain === "ethereum" ? ethereum :
-                            chain === "polygon" ? polygon :
-                            chain === "arbitrum" ? arbitrum :
-                            chain === "bsc" ? bsc : arbitrum,
-                    sponsorGas: true
-                  }}
-
-                  /*
-                  chain={chain === "ethereum" ? ethereum :
-                          chain === "polygon" ? polygon :
-                          chain === "arbitrum" ? arbitrum :
-                          chain === "bsc" ? bsc : arbitrum}
-                  */
-
-                  theme={"light"}
-
-                  // button color is dark skyblue convert (49, 103, 180) to hex
-                  connectButton={{
-                      style: {
-                          backgroundColor: "#3167b4", // dark skyblue
-                          color: "#f3f4f6", // gray-300
-                          padding: "2px 10px",
-                          borderRadius: "10px",
-                          fontSize: "14px",
-                          width: "60x",
-                          height: "38px",
-                      },
-                      label: "원클릭 로그인",
-                  }}
-
-                  connectModal={{
-                      size: "wide", 
-                      //size: "compact",
-                      titleIcon: "https://www.stable.makeup/logo.png",                           
-                      showThirdwebBranding: false,
-                  }}
-
-                  locale={"ko_KR"}
-                  //locale={"en_US"}
-                />
-
-            {/*
-            )}
-            */}
-
-
-
-
 
             {address && (
                 <div className="w-full flex flex-col items-end justify-center gap-2">

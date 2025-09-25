@@ -178,10 +178,17 @@ const CenterConsole = () => {
     // the contract's address
     ///address: contractAddressArbitrum,
 
+    /*
     address: chain === "ethereum" ? ethereumContractAddressUSDT :
             chain === "polygon" ? polygonContractAddressUSDT :
             chain === "arbitrum" ? arbitrumContractAddressUSDT :
             chain === "bsc" ? bscContractAddressUSDT : arbitrumContractAddressUSDT,
+    */
+
+    address: chain === "ethereum" ? arbitrumContractAddressCKEC :
+            chain === "polygon" ? arbitrumContractAddressCKEC :
+            chain === "arbitrum" ? arbitrumContractAddressCKEC :
+            chain === "bsc" ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
 
 
     // OPTIONAL: the contract's abi
@@ -212,11 +219,15 @@ const CenterConsole = () => {
           address: address,
         });
 
+        /*
         if (chain === 'bsc') {
           setBalance( Number(result) / 10 ** 18 );
         } else {
           setBalance( Number(result) / 10 ** 6 );
         }
+        */
+       
+        setBalance( Number(result) / 10 ** 18 );
 
       } catch (error) {
         console.error("Error getting balance", error);
@@ -281,6 +292,8 @@ const CenterConsole = () => {
 
           <div className="w-full flex flex-col gap-2 justify-between items-center
             bg-green-50 p-2 rounded-lg">
+            
+            {/*
             <div className="flex flex-row gap-2 justify-center items-center">
               <Image
                 src="/icon-tether.png"
@@ -293,17 +306,33 @@ const CenterConsole = () => {
                 USDT
               </span>
             </div>
+            */}
+
+            <div className="flex flex-row gap-2 justify-center items-center">
+              <Image
+                src="/token-ckec-icon.png"
+                alt="CKEC"
+                width={35}
+                height={35}
+                className="rounded-lg w-6 h-6"
+              />
+              <span className="text-sm text-zinc-600">
+                CKEC
+              </span>
+            </div>
+
 
             <div className="
             flex flex-col items-end justify-center
             text-lg font-semibold text-[#409192]"
             style={{ fontFamily: "monospace" }}
             >
-              {Number(balance).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              {Number(balance).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </div>
 
           </div>
 
+          {/*}
           <div className="flex flex-row gap-2 justify-center items-center">
             <Image
               src={`/logo-chain-${chain}.png`}
@@ -326,19 +355,21 @@ const CenterConsole = () => {
           </div>
 
           <div className="flex flex-col gap-2 justify-center items-center">
-            {/* if pol balance is 0, comment out the text */}
             {nativeBalance < 0.0001 && (
               <p className="text-sm text-red-500">
                 가스비용이 부족합니다.<br/>가스비용이 부족하면<br/>입금은 가능하지만<br/>출금은 불가능합니다.
               </p>
             )}
           </div>
+          */}
 
           <button
             className="px-3 py-1 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors duration-200"
             onClick={() => {
 
-              router.push('/ko/admin/withdraw-usdt');
+              ///router.push('/ko/admin/withdraw-usdt');
+
+              router.push('/ko/admin/withdraw-ckec');
 
             }}
           >
