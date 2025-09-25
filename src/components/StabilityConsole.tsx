@@ -88,7 +88,7 @@ import {
 import {
   clientId,
   client,
-} from "./../app/client";
+} from "@/app/client";
 
 import {
   chain,

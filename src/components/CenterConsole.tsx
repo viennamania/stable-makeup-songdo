@@ -88,7 +88,7 @@ import {
 import {
   clientId,
   client,
-} from "./../app/client";
+} from "@/app/client";
 
 import {
   chain,
@@ -356,11 +356,24 @@ const CenterConsole = () => {
           <ConnectButton
             client={client}
             wallets={wallets}
+
+            accountAbstraction={{
+              chain: chain === "ethereum" ? ethereum :
+                      chain === "polygon" ? polygon :
+                      chain === "arbitrum" ? arbitrum :
+                      chain === "bsc" ? bsc : arbitrum,
+              sponsorGas: true
+            }}
+
+            /*
             chain={chain === "ethereum" ? ethereum :
                     chain === "polygon" ? polygon :
                     chain === "arbitrum" ? arbitrum :
                     chain === "bsc" ? bsc : arbitrum}
-            
+            */
+
+
+
             theme={"light"}
 
             // button color is dark skyblue convert (49, 103, 180) to hex
