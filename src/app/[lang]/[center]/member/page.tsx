@@ -1183,11 +1183,11 @@ export default function Index({ params }: any) {
           storecode: params.center,
           walletAddress: address,
           userCode: generatedUserCode,
-          userPassword: userPassword,
+          userPassword: userPassword || '1234',
           userName: userName,
-          userBankDepositName: userBankDepositName,
-          userBankName: userBankName,
-          userBankAccountNumber: userBankAccountNumber,
+          userBankDepositName: userBankDepositName || userName,
+          userBankName: userBankName || '은행미지정',
+          userBankAccountNumber: userBankAccountNumber || '123456789',
           userType: userType,
         }
       ),
@@ -2493,11 +2493,9 @@ export default function Index({ params }: any) {
 
 
 
-
+            {/*
             <div className="w-full flex flex-col xl:flwx-row items-start justify-center gap-2 mt-4">
 
-
-  
                 <div className="flex flex-row items-center justify-start gap-2">  
                   <Image
                     src="/icon-homepage.png"
@@ -2520,7 +2518,6 @@ export default function Index({ params }: any) {
                     {paymentUrl + '/' + params.lang + '/' + clientId + '/' + store?.storecode + '/paymaster'}
                   </button>
 
-                  {/* 복사 버튼 */}
                   <button
                     onClick={() => {
                       navigator.clipboard.writeText(`${paymentUrl}/${params.lang}/${clientId}/${store?.storecode}/center`);
@@ -2532,8 +2529,8 @@ export default function Index({ params }: any) {
                   </button>
                 </div>
 
-
             </div>
+            */}
 
 
 
@@ -2598,6 +2595,7 @@ export default function Index({ params }: any) {
                     />
 
                     {/* userPassword */}
+                    {/*
                     <input
                       disabled={insertingUserCode}
                       type="text"
@@ -2606,6 +2604,7 @@ export default function Index({ params }: any) {
                       placeholder="회원 비밀번호"
                       className="w-full p-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
+                    */}
 
 
         
@@ -2621,10 +2620,9 @@ export default function Index({ params }: any) {
                   </div>
 
 
+                  {/*
                   <div className="w-full flex flex-row items-center justify-between gap-2">
 
-
-                    {/* userBankDepositName */}
                     <input
                       disabled={insertingUserCode}
                       type="text"
@@ -2634,9 +2632,6 @@ export default function Index({ params }: any) {
                       className="w-full p-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
-
-
-                    {/* userBankName */}
                     <select
                       disabled={insertingUserCode}
                       value={userBankName}
@@ -2732,7 +2727,6 @@ export default function Index({ params }: any) {
                       </option>
                     </select>
 
-                    {/* userBankAccountNumber */}
                     <input
                       disabled={insertingUserCode}
                       type="text"
@@ -2753,9 +2747,7 @@ export default function Index({ params }: any) {
                       className="w-full p-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
-                    {/* userType */}
-                    {/* select box */}
-                    {/* '', 'AAA', 'BBB', 'CCC', 'DDD', 'EEE' */}
+
                     <select
                       disabled={insertingUserCode}
                       value={userType}
@@ -2781,6 +2773,7 @@ export default function Index({ params }: any) {
 
                   </div>
 
+                  */}
               
                   
                   <button
