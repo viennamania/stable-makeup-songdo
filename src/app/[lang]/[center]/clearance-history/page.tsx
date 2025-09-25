@@ -2570,9 +2570,9 @@ export default function Index({ params }: any) {
                 "bg-black/10"
               }`}>
 
-              {/* banner-igor-bastidas-7.gif */}
+              {/* banner-ckec.jpg */}
               <Image
-                src="/banner-igor-bastidas-7.gif"
+                src="/banner-ckec.jpg"
                 alt="Please connect your wallet"
                 width={400}
                 height={200}

@@ -3092,9 +3092,9 @@ const fetchBuyOrders = async () => {
       <div className="flex flex-col items-center justify-center">
 
 
-        {/* banner-igor-bastidas-7.gif */}
+        {/* banner-ckec.jpg */}
         <Image
-          src="/banner-igor-bastidas-7.gif"
+          src="/banner-ckec.jpg"
           alt="Banner"
           width={500}
           height={200}

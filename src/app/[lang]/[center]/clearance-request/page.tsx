@@ -2214,9 +2214,9 @@ const [tradeSummary, setTradeSummary] = useState({
        
 
 
-              {/* banner-igor-bastidas-7.gif */}
+              {/* banner-ckec.jpg */}
               <Image
-                src="/banner-igor-bastidas-7.gif"
+                src="/banner-ckec.jpg"
                 alt="Please connect your wallet"
                 width={400}
                 height={200}
