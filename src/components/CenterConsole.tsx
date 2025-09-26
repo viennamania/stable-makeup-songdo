@@ -275,22 +275,31 @@ const CenterConsole = () => {
   return (
 
     <div className="
-    w-36
+    w-44
     flex flex-col items-center justify-center p-2 bg-gray-100 rounded-lg shadow-md">
 
       {address ? (
 
         <div className="w-full flex flex-col gap-2 justify-between items-center">
 
-          <button
-            className="text-lg text-zinc-800 underline"
-            onClick={() => {
-              navigator.clipboard.writeText(address);
-              toast.success("주소가 복사되었습니다.");
-            }}
-          >
-            {address.substring(0, 6)}...
-          </button>
+          <div className="flex flex-row gap-1 justify-center items-center">
+            <Image
+              src="/icon-shield.png"
+              alt="shield"
+              width={20}
+              height={20}
+              className="rounded-lg w-5 h-5"
+            />
+            <button
+              className="text-lg text-zinc-800 underline"
+              onClick={() => {
+                navigator.clipboard.writeText(address);
+                toast.success("주소가 복사되었습니다.");
+              }}
+            >
+              {address.substring(0, 6)}...
+            </button>
+          </div>
 
 
           <Canvas

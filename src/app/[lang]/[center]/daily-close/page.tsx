@@ -1432,7 +1432,7 @@ export default function Index({ params }: any) {
                     className="w-5 h-5"
                   />
                   <span className="text-lg font-semibold text-zinc-500">
-                    가맹점 거래
+                    P2P 거래
                   </span>
                 </div>
 
@@ -1473,6 +1473,7 @@ export default function Index({ params }: any) {
 
 
               {/* 가맹점 정산금 */}
+              {/*
               <div className="flex flex-col sm:flex-row items-start xl:items-center gap-2">
                 <div className="flex flex-row gap-2 items-center">
                   <Image
@@ -1519,6 +1520,7 @@ export default function Index({ params }: any) {
                   </span>
                 </div>
               </div>
+              */}
 
 
               {/* 가맹점 판매금 */}
@@ -1684,16 +1686,17 @@ export default function Index({ params }: any) {
                       <th className="px-4 py-2 text-right text-sm font-semibold text-zinc-600">결제수(건)/미결제수(건)</th>
                       */}
                       
+                      {/*}
                       <th className="px-4 py-2 text-right text-sm font-semibold text-zinc-600">수수료량(USDT)</th>
                       <th className="px-4 py-2 text-right text-sm font-semibold text-zinc-600">수수료금액(원)</th>
 
                       <th className="px-4 py-2 text-right text-sm font-semibold text-zinc-600">결제량(USDT)</th>
                       <th className="px-4 py-2 text-right text-sm font-semibold text-zinc-600">결제금액(원)</th>
 
-                      {/* escrow withdraw */}
                       <th className="px-4 py-2 text-right text-sm font-semibold text-zinc-600">
                         보유량(USDT) 출금처리
                       </th>
+                      */}
 
                     </tr>
                   </thead>
@@ -1736,6 +1739,7 @@ export default function Index({ params }: any) {
                           </td>
                           */}
 
+                          {/*
                           <td className="px-4 py-2 text-sm text-[#409192] font-semibold text-right"
                             style={{ fontFamily: 'monospace' }}
                           >
@@ -1779,6 +1783,7 @@ export default function Index({ params }: any) {
                             
                             )}
                           </td>
+                          */}
 
                         </tr>
 
