@@ -187,7 +187,7 @@ export async function POST(request: NextRequest) {
 
 
 
-
+    /*
     //get USDT balance of walletAddress
     const balance = await balanceOf({
         contract: getContract({
@@ -208,6 +208,33 @@ export async function POST(request: NextRequest) {
         }),
         address: walletAddress,
     });
+    */
+
+    //get CKEC balance of walletAddress
+    const balance = await balanceOf({
+        contract: getContract({
+            client: thirdwebClient,
+
+            //chain: arbitrum,
+            chain: chain === 'ethereum' ? ethereum :
+                   chain === 'polygon' ? polygon :
+                   chain === 'arbitrum' ? arbitrum :
+                   chain === 'bsc' ? bsc : arbitrum,
+
+            //address: contractAddressArbitrum,
+            address: chain === 'ethereum' ? arbitrumContractAddressCKEC :  // CKEC only on arbitrum
+                     chain === 'polygon' ? arbitrumContractAddressCKEC :
+                     chain === 'arbitrum' ? arbitrumContractAddressCKEC :
+                     chain === 'bsc' ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
+
+        }),
+        address: walletAddress,
+    });
+
+
+
+
+
     if (!balance) {
         console.log("balance not found");
         return NextResponse.json({
@@ -222,14 +249,15 @@ export async function POST(request: NextRequest) {
 
     //let clearanceUSDTBalance = Number(balance) / 10 ** 6; // USDT has 6 decimals
 
-    let clearanceUSDTBalance = 0;
 
+
+    /*
+    let clearanceUSDTBalance = 0;
     if (chain === 'bsc') {
         clearanceUSDTBalance = Number((Number(balance) / 10 ** 18).toFixed(6));
     } else {
         clearanceUSDTBalance = Number(balance) / 10 ** 6; // USDT has 6 decimals
     }
-
     console.log("clearanceUSDTBalance", clearanceUSDTBalance);
 
 
@@ -242,8 +270,6 @@ export async function POST(request: NextRequest) {
         });
     }
 
-
-
     clearanceUSDTBalance = clearanceUSDTBalance - 0.000001; // to avoid insufficient balance error
     if (clearanceUSDTBalance < 0) {
         
@@ -253,8 +279,6 @@ export async function POST(request: NextRequest) {
             error: "Clearance USDT balance is too low after fee adjustment"
         });
     }
-
-
 
 
 
@@ -278,6 +302,63 @@ export async function POST(request: NextRequest) {
         amount: clearanceUSDTBalance,
     });
 
+
+
+    */
+
+    let clearanceCKECBalance = 0;
+    clearanceCKECBalance = Number((Number(balance) / 10 ** 18).toFixed(6)); // CKEC has 18 decimals
+
+
+    console.log("clearanceCKECBalance", clearanceCKECBalance);
+    if (clearanceCKECBalance <= 0) {
+        console.log("clearanceCKECBalance is zero or negative");
+        return NextResponse.json({
+            result: "error",
+            error: "Clearance CKEC balance is zero or negative"
+        });
+    }
+
+
+
+
+    clearanceCKECBalance = clearanceCKECBalance - 0.000001; // to avoid insufficient balance error
+    if (clearanceCKECBalance < 0) {
+
+        console.log("clearanceCKECBalance is too low after fee adjustment");
+        return NextResponse.json({
+            result: "error",
+            error: "Clearance CKEC balance is too low after fee adjustment"
+        });
+    }
+
+
+
+
+
+    // transfer USDT to sellerWalletAddress
+    const transactionSendToStore = transfer({
+        contract: getContract({
+            client: thirdwebClient,
+            //chain: arbitrum,
+            chain: chain === 'ethereum' ? ethereum :
+                   chain === 'polygon' ? polygon :
+                   chain === 'arbitrum' ? arbitrum :
+                   chain === 'bsc' ? bsc : arbitrum,
+
+            address: chain === 'ethereum' ? arbitrumContractAddressCKEC :
+                     chain === 'polygon' ? arbitrumContractAddressCKEC :
+                     chain === 'arbitrum' ? arbitrumContractAddressCKEC :
+                     chain === 'bsc' ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
+
+        }),
+        to: sellerWalletAddress,
+        amount: clearanceCKECBalance,
+    });
+
+
+
+
     const result = await sendTransaction({
         account: account,
         transaction: transactionSendToStore,
@@ -294,7 +375,7 @@ export async function POST(request: NextRequest) {
     }
 
 
-
+    /*
     return NextResponse.json({
 
       result: "success",
@@ -306,6 +387,21 @@ export async function POST(request: NextRequest) {
       sellerWalletAddress: sellerWalletAddress
       
     });
+    */
+
+    return NextResponse.json({
+
+      result: "success",
+      chain: chain,
+      transactionHash: result.transactionHash,
+      clearanceBalance: clearanceCKECBalance,
+      storecode: storecode,
+      walletAddress: walletAddress,
+      sellerWalletAddress: sellerWalletAddress
+      
+    });
+
+
 
   } catch (e) {
 

@@ -30,12 +30,6 @@ import {
 } from "thirdweb";
 
 
-
-import {
-  polygon,
-  arbitrum,
-} from "thirdweb/chains";
-
 import {
   ConnectButton,
   useActiveAccount,
@@ -86,6 +80,24 @@ import { paymentUrl } from "../../../config/payment";
 import { version } from "../../../config/version";
 
 
+
+
+import {
+  ethereum,
+  polygon,
+  arbitrum,
+  bsc,
+} from "thirdweb/chains";
+
+import {
+  chain,
+  ethereumContractAddressUSDT,
+  polygonContractAddressUSDT,
+  arbitrumContractAddressUSDT,
+  bscContractAddressUSDT,
+
+  arbitrumContractAddressCKEC,
+} from "@/app/config/contractAddresses";
 
 interface BuyOrder {
   _id: string;
@@ -167,15 +179,6 @@ const wallets = [
   
 
 
-// get escrow wallet address
-
-//const escrowWalletAddress = "0x2111b6A49CbFf1C8Cc39d13250eF6bd4e1B59cF6";
-
-
-
-const contractAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"; // USDT on Polygon
-const contractAddressArbitrum = "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"; // USDT on Arbitrum
-
 
 
 
@@ -196,7 +199,7 @@ export default function Index({ params }: any) {
 
 
 
-    const activeWallet = useActiveWallet();
+  const activeWallet = useActiveWallet();
     
 
   const contract = getContract({
@@ -205,19 +208,56 @@ export default function Index({ params }: any) {
     // the chain the contract is deployed on
     
     
-    chain: arbitrum,
+    //chain: arbitrum,
+    chain:  chain === "ethereum" ? ethereum :
+            chain === "polygon" ? polygon :
+            chain === "arbitrum" ? arbitrum :
+            chain === "bsc" ? bsc : arbitrum,
   
   
   
     // the contract's address
     ///address: contractAddressArbitrum,
 
-    address: contractAddressArbitrum,
+    address: chain === "ethereum" ? ethereumContractAddressUSDT :
+            chain === "polygon" ? polygonContractAddressUSDT :
+            chain === "arbitrum" ? arbitrumContractAddressUSDT :
+            chain === "bsc" ? bscContractAddressUSDT : arbitrumContractAddressUSDT,
 
 
     // OPTIONAL: the contract's abi
     //abi: [...],
   });
+
+
+  const contractCKEC = getContract({
+    // the client you have created via `createThirdwebClient()`
+    client,
+    // the chain the contract is deployed on
+    
+    
+    //chain: arbitrum,
+    chain:  chain === "ethereum" ? ethereum :
+            chain === "polygon" ? polygon :
+            chain === "arbitrum" ? arbitrum :
+            chain === "bsc" ? bsc : arbitrum,
+  
+  
+  
+    // the contract's address
+    ///address: contractAddressArbitrum,
+
+    address: chain === "ethereum" ? arbitrumContractAddressCKEC :
+            chain === "polygon" ? arbitrumContractAddressCKEC :
+            chain === "arbitrum" ? arbitrumContractAddressCKEC :
+            chain === "bsc" ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
+
+
+    // OPTIONAL: the contract's abi
+    //abi: [...],
+  });
+
+
 
 
 
@@ -508,120 +548,6 @@ export default function Index({ params }: any) {
   
 
 
-  const [nativeBalance, setNativeBalance] = useState(0);
-  const [balance, setBalance] = useState(0);
-  useEffect(() => {
-
-    // get the balance
-    const getBalance = async () => {
-
-      ///console.log('getBalance address', address);
-
-      
-      const result = await balanceOf({
-        contract,
-        address: address || "",
-      });
-
-  
-      //console.log(result);
-  
-      setBalance( Number(result) / 10 ** 6 );
-
-
-      /*
-      await fetch('/api/user/getBalanceByWalletAddress', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chain: params.center,
-          walletAddress: address,
-        }),
-      })
-
-      .then(response => response.json())
-
-      .then(data => {
-          setNativeBalance(data.result?.displayValue);
-      });
-      */
-
-
-
-    };
-
-
-    if (address) getBalance();
-
-    const interval = setInterval(() => {
-      if (address) getBalance();
-    } , 5000);
-
-    return () => clearInterval(interval);
-
-  } , [address, contract, params.center]);
-
-
-
-
-
-
-
-
-
-
-
-  const [escrowWalletAddress, setEscrowWalletAddress] = useState('');
-  const [makeingEscrowWallet, setMakeingEscrowWallet] = useState(false);
-
-  const makeEscrowWallet = async () => {
-      
-    if (!address) {
-      toast.error('Please connect your wallet');
-      return;
-    }
-
-
-    setMakeingEscrowWallet(true);
-
-    fetch('/api/order/getEscrowWalletAddress', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        lang: params.lang,
-        storecode: params.center,
-        walletAddress: address,
-        //isSmartAccount: activeWallet === inAppConnectWallet ? false : true,
-        isSmartAccount: false,
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        
-        //console.log('getEscrowWalletAddress data.result', data.result);
-
-
-        if (data.result) {
-          setEscrowWalletAddress(data.result.escrowWalletAddress);
-          toast.success(Escrow_Wallet_Address_has_been_created);
-        } else {
-          toast.error(Failed_to_create_Escrow_Wallet_Address);
-        }
-    })
-    .finally(() => {
-      setMakeingEscrowWallet(false);
-    });
-
-  }
-
-  //console.log("escrowWalletAddress", escrowWalletAddress);
-
-
-
 
 
 
@@ -700,7 +626,7 @@ export default function Index({ params }: any) {
 
     }
 
-  } , [address]);
+  } , [address, params.center]);
 
 
 
@@ -733,22 +659,19 @@ export default function Index({ params }: any) {
 
         setUser(data.result);
 
-        setEscrowWalletAddress(data.result.escrowWalletAddress);
-
         setIsAdmin(data.result?.role === "admin");
 
     })
     .catch((error) => {
         console.error('Error:', error);
         setUser(null);
-        setEscrowWalletAddress('');
         setIsAdmin(false);
     });
 
     setLoadingUser(false);
 
 
-  } , [address]);
+  } , [address, params.center]);
 
 
 
@@ -1371,9 +1294,14 @@ export default function Index({ params }: any) {
 
   const getBalanceOfWalletAddress = async (walletAddress: string) => {
   
-
+    /*
     const balance = await balanceOf({
       contract,
+      address: walletAddress,
+    });
+    */
+    const balance = await balanceOf({
+      contract: contractCKEC,
       address: walletAddress,
     });
     
@@ -1407,7 +1335,9 @@ export default function Index({ params }: any) {
 
 
 
-    return Number(balance) / 10 ** 6; // Convert to USDT
+    ////return Number(balance) / 10 ** 6; // Convert to USDT
+
+    return Number(balance) / 10 ** 18; // Convert to CKEC
 
   };
 
@@ -1478,64 +1408,6 @@ export default function Index({ params }: any) {
     return data.result;
   };
 
-
-
- 
-
-
-
-
-  const [escrowBalance, setEscrowBalance] = useState(0);
-  const [todayMinusedEscrowAmount, setTodayMinusedEscrowAmount] = useState(0);
-
-  useEffect(() => {
-
-    const fetchEscrowBalance = async () => {
-      if (!params.center) {
-        return;
-      }
-
-      const response = await fetch('/api/store/getEscrowBalance', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(
-            {
-              storecode: params.center,
-            }
-        ),
-      });
-
-      if (!response.ok) {
-        return;
-      }
-
-
-
-      const data = await response.json();
-
-      setEscrowBalance(data.result.escrowBalance);
-      setTodayMinusedEscrowAmount(data.result.todayMinusedEscrowAmount);
-
-    }
-
-
-    fetchEscrowBalance();
-
-    
-    
-    const interval = setInterval(() => {
-
-      fetchEscrowBalance();
-
-    }, 5000);
-
-    return () => clearInterval(interval);
-
-  } , [
-    params.center,
-  ]);
 
 
 
@@ -2894,18 +2766,21 @@ export default function Index({ params }: any) {
                     >
                       <tr>
                         <th className="p-2">등록일</th>
-                        <th className="p-2">회원아이디</th>
+                        <th className="p-2">회원 아이디</th>
+                        {/*
                         <th className="p-2">회원등급</th>
                         <th className="p-2">회원 통장</th>
+                        */}
+                        <th className="p-2">회원 이름</th>
                         <th className="p-2">구매수(건)</th>
                         <th className="p-2 text-right">
-                          구매량(USDT)
+                          구매량
                           <br />
                           구매금액(원)
                         </th>
                         <th className="p-2">충전금액</th>
                         <th className="p-2">회원 결제페이지</th>
-                        <th className="p-2">회원 USDT지갑</th>
+                        <th className="p-2">회원 지갑주소</th>
                         <th className="p-2">주문상태</th>
                         <th className="p-2">잔액확인</th>
                       </tr>
@@ -2941,6 +2816,7 @@ export default function Index({ params }: any) {
                           {/* userType */}
                           {/* '', 'AAA', 'BBB', 'CCC', 'DDD', 'EEE' */}
                           {/* if '' or not exists then '일반회원' */}
+                          {/*
                           <td className="p-2">
                             <div className="
                             w-20
@@ -2997,7 +2873,9 @@ export default function Index({ params }: any) {
 
                             </div>
                           </td>
+                          */}
 
+                          {/*
                           <td className="p-2">
                             <div className="flex flex-col items-end justify-center gap-1">
                               
@@ -3025,6 +2903,13 @@ export default function Index({ params }: any) {
 
                             </div>
                           </td>
+                          */}
+                          
+                          <td className="p-2">
+                            {item?.buyer?.depositName || '-'}
+                          </td>
+
+
 
                           <td className="p-2">
                             <div className="w-20 flex flex-col items-end justify-center gap-1">
