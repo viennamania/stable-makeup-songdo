@@ -2810,7 +2810,9 @@ export default function Index({ params }: any) {
                           </td>
 
                           <td className="p-2">
-                            {item.nickname}
+                            <div className="w-24 flex flex-col items-center justify-center gap-1">
+                              {item.nickname}
+                            </div>
                           </td>
 
                           {/* userType */}
@@ -2906,7 +2908,9 @@ export default function Index({ params }: any) {
                           */}
                           
                           <td className="p-2">
-                            {item?.buyer?.depositName || '-'}
+                            <div className="w-24 flex flex-col items-center justify-center gap-1">
+                              {item?.buyer?.depositName || '-'}
+                            </div>
                           </td>
 
 
@@ -2916,6 +2920,7 @@ export default function Index({ params }: any) {
                               {item?.totalPaymentConfirmedCount || 0}
                             </div>
                           </td>
+
                           <td className="p-2">
                             <div className="
                               mr-5
