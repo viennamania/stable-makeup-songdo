@@ -6942,7 +6942,7 @@ const fetchBuyOrders = async () => {
                             <div className="flex flex-col gap-2 items-start justify-start ml-2">
                               <div className="flex flex-col gap-1 items-start justify-start">
                                 <span className="text-sm">
-                                  회원지갑으로 전송한 테더(USDT)
+                                  회원지갑으로 전송한 코인
                                 </span>
                                 <div className="flex flex-row gap-1 items-center justify-start">
                                   <Image
@@ -7001,7 +7001,7 @@ const fetchBuyOrders = async () => {
                               className="w-5 h-5 animate-spin"
                             />
                             <span className="text-sm text-zinc-500">
-                              판매자가 판매한 테더(USDT)를 구매자에게 보내는 중
+                              판매자가 판매한 코인을 구매자에게 보내는 중
                             </span>
                           </div>
                         )}

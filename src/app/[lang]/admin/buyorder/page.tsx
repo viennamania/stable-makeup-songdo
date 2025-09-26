@@ -6813,7 +6813,7 @@ const fetchBuyOrders = async () => {
                                 <div className="flex flex-col gap-1 items-start justify-start">
                                   {/*
                                   <span className="text-sm text-zinc-500">
-                                    테더(USDT) 전송내역
+                                    코인 전송내역
                                   </span>
                                   */}
                                   {/* sellerWalletAddressBalance */}
