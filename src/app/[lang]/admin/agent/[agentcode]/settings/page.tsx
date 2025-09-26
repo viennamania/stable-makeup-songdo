@@ -1050,8 +1050,8 @@ export default function SettingsPage({ params }: any) {
             toast.error("USDT-KRW 환율을 입력하세요");
             return;
         }
-        if (usdtKRWRate < 1300 || usdtKRWRate > 1500) {
-            toast.error("USDT-KRW 환율은 1300 ~ 1500으로 설정하세요");
+        if (usdtKRWRate < 100 || usdtKRWRate > 10000) {
+            toast.error("USDT-KRW 환율은 100 ~ 10000으로 설정하세요");
             return;
         }
         if (usdtKRWRate === agent?.usdtKRWRate) {
