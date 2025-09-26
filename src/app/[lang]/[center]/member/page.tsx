@@ -2055,7 +2055,7 @@ export default function Index({ params }: any) {
                       flex flex-row gap-2 items-center justify-between
                     ">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -2080,7 +2080,7 @@ export default function Index({ params }: any) {
                       flex flex-row gap-2 items-center justify-between
                     ">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -2130,7 +2130,7 @@ export default function Index({ params }: any) {
 
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -2177,7 +2177,7 @@ export default function Index({ params }: any) {
 
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -2225,7 +2225,7 @@ export default function Index({ params }: any) {
 
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -2929,7 +2929,7 @@ export default function Index({ params }: any) {
 
                               <div className="w-full flex flex-row items-center justify-end gap-1">
                                 <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="Tether"
                                   width={20}
                                   height={20}

@@ -3067,7 +3067,7 @@ const fetchBuyOrders = async () => {
                       flex flex-row gap-2 items-center justify-between
                     ">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -3092,7 +3092,7 @@ const fetchBuyOrders = async () => {
                       flex flex-row gap-2 items-center justify-between
                     ">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -3143,7 +3143,7 @@ const fetchBuyOrders = async () => {
 
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -3190,7 +3190,7 @@ const fetchBuyOrders = async () => {
 
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -3238,7 +3238,7 @@ const fetchBuyOrders = async () => {
 
                 <div className="flex flex-row items-center gap-2">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -3576,7 +3576,7 @@ const fetchBuyOrders = async () => {
                     <div className="text-sm">총 P2P 거래량(USDT)</div>
                     <div className="flex flex-row items-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -3628,7 +3628,7 @@ const fetchBuyOrders = async () => {
                     <div className="text-sm">총 결제량(USDT)</div>
                     <div className="flex flex-row items-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -3665,7 +3665,7 @@ const fetchBuyOrders = async () => {
                     <div className="text-sm">총 수수료수량(USDT)</div>
                     <div className="flex flex-row items-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -3711,7 +3711,7 @@ const fetchBuyOrders = async () => {
                     <div className="text-sm">총 청산수량(USDT)</div>
                     <div className="flex flex-row items-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -4002,7 +4002,7 @@ const fetchBuyOrders = async () => {
                                 </span>
                                 <div className="flex flex-row items-center gap-1">
                                   <Image
-                                    src="/icon-tether.png"
+                                    src="/token-ckec-icon.png"
                                     alt="Tether"
                                     width={20}
                                     height={20}
@@ -4402,7 +4402,7 @@ const fetchBuyOrders = async () => {
                                         </span>
                                         <div className="flex flex-row gap-1 items-center justify-start">
                                           <Image
-                                            src={`/icon-tether.png`}
+                                            src={`/token-ckec-icon.png`}
                                             alt="USDT Logo"
                                             width={20}
                                             height={20}

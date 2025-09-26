@@ -1873,7 +1873,7 @@ export default function Index({ params }: any) {
 
                     <div className="flex flex-row items-center justify-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="USDT"
                         width={30}
                         height={30}
@@ -1934,7 +1934,7 @@ export default function Index({ params }: any) {
 
                     <div className="flex flex-row items-center justify-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="USDT"
                         width={30}
                         height={30}
@@ -2004,7 +2004,7 @@ export default function Index({ params }: any) {
                             </div>
                             <div className="flex flex-row items-center gap-1">
                               <Image
-                                src="/icon-tether.png"
+                                src="/token-ckec-icon.png"
                                 alt="USDT"
                                 width={30}
                                 height={30}
@@ -2065,7 +2065,7 @@ export default function Index({ params }: any) {
                           <div className="flex flex-row items-center justify-center gap-2">
                               <div className="flex flex-row items-center gap-1">
                                 <Image
-                                    src="/icon-tether.png"
+                                    src="/token-ckec-icon.png"
                                     alt="USDT"
                                     width={30}
                                     height={30}
@@ -2966,7 +2966,7 @@ export default function Index({ params }: any) {
                                   
                                     <div className="flex flex-row items-center gap-1">
                                       <Image
-                                        src="/icon-tether.png"
+                                        src="/token-ckec-icon.png"
                                         alt="Tether"
                                         width={20}
                                         height={20}

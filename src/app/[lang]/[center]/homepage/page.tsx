@@ -2917,7 +2917,7 @@ const fetchBuyOrders = async () => {
                         
                           <div className="flex flex-row items-center justify-center  gap-2">
                               <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="USDT"
                                   width={50}
                                   height={50}
@@ -5409,7 +5409,7 @@ const fetchBuyOrders = async () => {
                                 <div className="mt-2 flex flex-row items-start gap-2">
                                   <div className="flex flex-row items-center gap-1">
                                     <Image
-                                      src="/icon-tether.png"
+                                      src="/token-ckec-icon.png"
                                       alt="Tether"
                                       width={24}
                                       height={24}

@@ -2279,7 +2279,7 @@ export default function SettingsPage({ params }: any) {
 
                                     <div className='flex flex-row items-center justify-center gap-2'>
                                         <Image
-                                            src="/icon-tether.png"
+                                            src="/token-ckec-icon.png"
                                             alt="Tether"
                                             width={20}
                                             height={20}

@@ -1783,7 +1783,7 @@ const fetchBuyOrders = async () => {
                 <div className="text-sm">총 P2P 거래량(USDT)</div>
                 <div className="flex flex-row items-center justify-center gap-1">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -1823,7 +1823,7 @@ const fetchBuyOrders = async () => {
                 <div className="text-sm">총 결제량(USDT)</div>
                 <div className="flex flex-row items-center justify-center gap-1">
                   <Image
-                    src="/icon-tether.png"
+                    src="/token-ckec-icon.png"
                     alt="Tether"
                     width={20}
                     height={20}
@@ -1856,7 +1856,7 @@ const fetchBuyOrders = async () => {
                     <div className="text-sm">총 PG 수수료(USDT)</div>
                     <div className="w-full flex flex-row items-center justify-end gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -1886,7 +1886,7 @@ const fetchBuyOrders = async () => {
                     <div className="text-sm">총 AG 수수료(USDT)</div>
                     <div className="w-full flex flex-row items-center justify-end gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}

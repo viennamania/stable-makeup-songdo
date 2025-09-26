@@ -2092,7 +2092,7 @@ export default function Index({ params }: any) {
                     flex flex-row gap-2 items-center justify-between
                   ">
                     <Image
-                      src="/icon-tether.png"
+                      src="/token-ckec-icon.png"
                       alt="Tether"
                       width={20}
                       height={20}
@@ -2118,7 +2118,7 @@ export default function Index({ params }: any) {
                     flex flex-row gap-2 items-center justify-between
                   ">
                     <Image
-                      src="/icon-tether.png"
+                      src="/token-ckec-icon.png"
                       alt="Tether"
                       width={20}
                       height={20}
@@ -2172,7 +2172,7 @@ export default function Index({ params }: any) {
 
               <div className="flex flex-row items-center gap-2">
                 <Image
-                  src="/icon-tether.png"
+                  src="/token-ckec-icon.png"
                   alt="Tether"
                   width={20}
                   height={20}
@@ -2205,8 +2205,6 @@ export default function Index({ params }: any) {
 
 
 
-
-            {/* 가맹점 정산금 */}
             <div className="flex flex-col sm:flex-row items-start xl:items-center gap-2">
               <div className="flex flex-row gap-2 items-center">
                 <Image
@@ -2217,13 +2215,13 @@ export default function Index({ params }: any) {
                   className="w-5 h-5"
                 />
                 <span className="text-lg font-semibold text-zinc-500">
-                  가맹점 정산
+                  가맹점 결제
                 </span>
               </div>
 
               <div className="flex flex-row items-center gap-2">
                 <Image
-                  src="/icon-tether.png"
+                  src="/token-ckec-icon.png"
                   alt="Tether"
                   width={20}
                   height={20}
@@ -2273,7 +2271,7 @@ export default function Index({ params }: any) {
 
               <div className="flex flex-row items-center gap-2">
                 <Image
-                  src="/icon-tether.png"
+                  src="/token-ckec-icon.png"
                   alt="Tether"
                   width={20}
                   height={20}
@@ -2485,7 +2483,7 @@ export default function Index({ params }: any) {
 
                     <div className="flex flex-row items-center justify-center gap-2">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="Tether"
                         width={20}
                         height={20}
@@ -2533,7 +2531,7 @@ export default function Index({ params }: any) {
                               w-20
                               flex flex-row items-center justify-between gap-2">
                               <Image
-                                src="/icon-tether.png"
+                                src="/token-ckec-icon.png"
                                 alt="Tether"
                                 width={20}
                                 height={20}
@@ -2645,7 +2643,7 @@ export default function Index({ params }: any) {
 
                       <div className="flex flex-row items-center justify-center gap-2">
                         <Image
-                          src="/icon-tether.png"
+                          src="/token-ckec-icon.png"
                           alt="Tether"
                           width={20}
                           height={20}
@@ -2684,7 +2682,7 @@ export default function Index({ params }: any) {
                       <h2 className="text-lg font-semibold">총 결제량(USDT)</h2>
                       <div className="flex flex-row items-center justify-center gap-2">
                         <Image
-                          src="/icon-tether.png"
+                          src="/token-ckec-icon.png"
                           alt="Tether"
                           width={20}
                           height={20}
@@ -2748,7 +2746,7 @@ export default function Index({ params }: any) {
                             <td className="px-4 py-2">
                               <div className="w-full flex flex-row items-center justify-end gap-1">
                                 <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="Tether"
                                   width={20}
                                   height={20}
@@ -2851,7 +2849,7 @@ export default function Index({ params }: any) {
                       <h2 className="text-lg font-semibold">총 판매량(USDT)</h2>
                       <div className="flex flex-row items-center justify-center gap-2">
                         <Image
-                          src="/icon-tether.png"
+                          src="/token-ckec-icon.png"
                           alt="Tether"
                           width={20}
                           height={20}
@@ -2934,7 +2932,7 @@ export default function Index({ params }: any) {
                                 w-20
                                 flex flex-row items-center justify-between gap-2">
                                 <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="Tether"
                                   width={20}
                                   height={20}

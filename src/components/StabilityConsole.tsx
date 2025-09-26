@@ -348,7 +348,7 @@ const StabilityConsole = () => {
               bg-green-50 p-2 rounded-lg">
               <div className="flex flex-row gap-2 justify-center items-center">
                 <Image
-                  src="/icon-tether.png"
+                  src="/token-ckec-icon.png"
                   alt="USDT"
                   width={35}
                   height={35}

@@ -1348,7 +1348,7 @@ export default function Index({ params }: any) {
                             <div className="flex flex-col items-end">
                               <div className="flex flex-row items-center justify-end gap-1">
                                 <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="USDT"
                                   width={16}
                                   height={16}
@@ -1659,7 +1659,7 @@ export default function Index({ params }: any) {
                     <h2 className="text-lg font-semibold">총 거래량(USDT)</h2>
                     <div className="flex flex-row items-center justify-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="USDT"
                         width={20}
                         height={20}
@@ -1693,7 +1693,7 @@ export default function Index({ params }: any) {
                     <h2 className="text-lg font-semibold">총 결제량(USDT)</h2>
                     <div className="flex flex-row items-center justify-center gap-1">
                       <Image
-                        src="/icon-tether.png"
+                        src="/token-ckec-icon.png"
                         alt="USDT"
                         width={20}
                         height={20}
@@ -1815,7 +1815,7 @@ export default function Index({ params }: any) {
                             <div className="flex flex-col items-end">
                               <div className="flex flex-row items-center justify-end gap-1">
                                 <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="USDT"
                                   width={16}
                                   height={16}
@@ -1848,7 +1848,7 @@ export default function Index({ params }: any) {
                             <div className="flex flex-col items-end">
                               <div className="flex flex-row items-center justify-end gap-1">
                                 <Image
-                                  src="/icon-tether.png"
+                                  src="/token-ckec-icon.png"
                                   alt="USDT"
                                   width={16}
                                   height={16}
