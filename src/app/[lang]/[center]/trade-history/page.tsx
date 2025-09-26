@@ -3595,6 +3595,7 @@ const fetchBuyOrders = async () => {
                 </div>
 
                 {/* divider */}
+                {/*
                 <div className="hidden xl:block w-0.5 h-10 bg-zinc-300"></div>
                 <div className="sm:hidden w-full h-0.5 bg-zinc-300"></div>
 
@@ -3683,6 +3684,7 @@ const fetchBuyOrders = async () => {
                     </div>
                   </div>
                 </div>
+                */}
 
 
                 {/* divider */}
