@@ -1440,7 +1440,7 @@ export default function Index({ params }: any) {
 
             //toast.success('Payment request has been sent');
 
-            playSong();
+            ///playSong();
             
 
             
@@ -1566,7 +1566,7 @@ export default function Index({ params }: any) {
 
           //toast.success('Payment request has been sent');
 
-          playSong();
+          ///playSong();
           
           await fetch('/api/order/getAllBuyOrders', {
             method: 'POST',
@@ -1893,7 +1893,7 @@ export default function Index({ params }: any) {
               })
 
               toast.success(Payment_has_been_confirmed);
-              playSong();
+              ///playSong();
 
 
 
@@ -2098,7 +2098,7 @@ export default function Index({ params }: any) {
             })
 
           toast.success(Payment_has_been_confirmed);
-          playSong();
+          ///playSong();
 
 
         } else {
@@ -2232,7 +2232,7 @@ export default function Index({ params }: any) {
 
         toast.success('Payment has been rollbacked');
 
-        playSong();
+        ///playSong();
 
         
         ///fetchBuyOrders();
