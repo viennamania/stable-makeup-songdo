@@ -791,6 +791,15 @@ export default function SendUsdt({ params }: any) {
 
                     <div className="flex flex-row items-center justify-center gap-2">
 
+
+                        <Image
+                            src="/icon-shield.png"
+                            alt="Wallet"
+                            width={100}
+                            height={100}
+                            className="w-6 h-6"
+                        />
+
                         <button
                             className="text-lg text-zinc-600 underline"
                             onClick={() => {
@@ -801,13 +810,7 @@ export default function SendUsdt({ params }: any) {
                             {address.substring(0, 6)}...{address.substring(address.length - 4)}
                         </button>
                         
-                        <Image
-                            src="/icon-shield.png"
-                            alt="Wallet"
-                            width={100}
-                            height={100}
-                            className="w-6 h-6"
-                        />
+
 
                     </div>
 
@@ -820,7 +823,7 @@ export default function SendUsdt({ params }: any) {
                         className="w-6 h-6"
                       />
                       <span className="text-2xl xl:text-4xl font-semibold text-yellow-600">
-                          {Number(ckecBalance).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          {Number(ckecBalance).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </span>
                       {' '}
                       <span className="text-sm">CKEC</span>
@@ -1335,7 +1338,7 @@ export default function SendUsdt({ params }: any) {
                                 >
                                 {
                                   (Number(transfer.transferData.value) / 10 ** 18)
-                                  .toFixed(0)
+                                  .toFixed(3)
                                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                                 }
                                 </span>

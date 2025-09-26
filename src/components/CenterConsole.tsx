@@ -103,6 +103,7 @@ import { add } from "thirdweb/extensions/farcaster/keyGateway";
 import { toast } from "react-hot-toast";
 
 
+import { useQRCode } from 'next-qrcode';
 
 
 const wallets = [
@@ -197,6 +198,9 @@ const CenterConsole = () => {
 
 
 
+  const { Canvas } = useQRCode();
+
+
 
   const [balance, setBalance] = useState(0);
   const [nativeBalance, setNativeBalance] = useState(0);
@@ -287,6 +291,24 @@ const CenterConsole = () => {
           >
             {address.substring(0, 6)}...
           </button>
+
+
+          <Canvas
+            text={address}
+              options={{
+                //level: 'M',
+                margin: 2,
+                scale: 4,
+                ///width: 200,
+                // width 100%
+                width: 150,
+                color: {
+                    dark: '#000000FF',
+                    light: '#FFFFFFFF',
+                },
+  
+              }}
+          />
 
 
 
