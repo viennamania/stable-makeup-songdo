@@ -301,7 +301,7 @@ const CenterConsole = () => {
                 scale: 4,
                 ///width: 200,
                 // width 100%
-                width: 150,
+                width: 180,
                 color: {
                     dark: '#000000FF',
                     light: '#FFFFFFFF',
