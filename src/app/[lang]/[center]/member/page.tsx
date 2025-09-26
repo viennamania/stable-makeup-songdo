@@ -1307,7 +1307,9 @@ export default function Index({ params }: any) {
     
     console.log('getBalanceOfWalletAddress', walletAddress, 'balance', balance);
 
-    toast.success(`잔액이 업데이트되었습니다. 잔액: ${(Number(balance) / 10 ** 6).toFixed(3)} USDT`);
+    //toast.success(`잔액이 업데이트되었습니다. 잔액: ${(Number(balance) / 10 ** 6).toFixed(3)} USDT`);
+
+    toast.success(`잔액이 업데이트되었습니다. 잔액: ${(Number(balance) / 10 ** 18).toFixed(3)} CKEC`);
 
     /*
     setAllUsers((prev) => {
@@ -1323,6 +1325,7 @@ export default function Index({ params }: any) {
     });
     */
     // update the usdtBalance of the user
+    /*
     setUsdtBalance((prev) => {
       const newUsdtBalance = [...prev];
       const index = allUsers.findIndex(u => u.walletAddress === walletAddress);
@@ -1331,8 +1334,16 @@ export default function Index({ params }: any) {
       }
       return newUsdtBalance;
     });
+    */
 
-
+    setUsdtBalance((prev) => {
+      const newUsdtBalance = [...prev];
+      const index = allUsers.findIndex(u => u.walletAddress === walletAddress);
+      if (index !== -1) {
+        newUsdtBalance[index] = Number(balance) / 10 ** 18; // Convert to CKEC
+      }
+      return newUsdtBalance;
+    });
 
 
     ////return Number(balance) / 10 ** 6; // Convert to USDT

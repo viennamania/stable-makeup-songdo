@@ -1769,7 +1769,7 @@ export default function Index({ params }: any) {
         const usdtAmount = buyOrders[index].usdtAmount;
 
         const transaction = transfer({
-          contract,
+          contract: contractCKEC,
           to: buyerWalletAddress,
           amount: usdtAmount,
         });
@@ -1777,9 +1777,9 @@ export default function Index({ params }: any) {
 
         try {
 
-          const { transactionHash } = await sendAndConfirmTransaction({
+          //const { transactionHash } = await sendAndConfirmTransaction({
           
-          //const { transactionHash } = await sendTransaction({
+          const { transactionHash } = await sendTransaction({
           
             account: activeAccount as any,
             transaction,
@@ -1903,6 +1903,9 @@ export default function Index({ params }: any) {
 
         } catch (error) {
           console.error('Error:', error);
+          
+          alert('error=' + error);
+
           toast.error('결제확인이 실패했습니다.');
         }
 
@@ -1912,6 +1915,7 @@ export default function Index({ params }: any) {
 
     } catch (error) {
       console.error('Error:', error);
+      alert('error=' + error);
       toast.error('결제확인이 실패했습니다.');
     }
 
@@ -3914,9 +3918,9 @@ const fetchBuyOrders = async () => {
 
             {/* 자동결제용 지갑주소 */}
             {/* store.settlementWalletAddress */}
+            {/*
             <div className="flex flex-col sm:flex-row items-start xl:items-end gap-1">
               <div className="flex flex-row gap-2 items-center">
-                {/* dot */}
                 <div className="w-1 h-1 rounded-full bg-zinc-500" />
                 <span className="text-sm text-zinc-500">
                   가맹점 자동결제용 지갑주소
@@ -3938,6 +3942,7 @@ const fetchBuyOrders = async () => {
                 </span>
               </div>
             </div>
+            */}
 
 
             {/*address && (

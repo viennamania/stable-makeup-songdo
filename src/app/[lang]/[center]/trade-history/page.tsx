@@ -3782,7 +3782,9 @@ const fetchBuyOrders = async () => {
                         <th className="p-2">거래상태</th>
                         {/*<th className="p-2">{Trades}</th>*/}
 
+                        {/*
                         <th className="p-2">자동결제 및 정산(USDT)</th>
+                        */}
 
                       </tr>
                     </thead>
@@ -4708,7 +4710,7 @@ const fetchBuyOrders = async () => {
 
                           */}
 
-
+                          {/*
                           <td className=" p-2">
                             <div className="
                               w-48
@@ -4772,23 +4774,6 @@ const fetchBuyOrders = async () => {
                                       item?.settlement?.settlementWalletAddress?.slice(0, 5) + '...'}
                                     </span>
 
-                                    {/*
-                                    <span>
-                                      {item?.settlement?.agentFeeAmount?.toLocaleString() + ' USDT'}
-                                      {' '}
-                                      {
-                                        item?.settlement?.agentFeeWalletAddress &&
-                                      item?.settlement?.agentFeeWalletAddress?.slice(0, 5) + '...'}
-                                    </span>
-                                    <span>
-                                      {item?.settlement?.feeAmount?.toLocaleString() + ' USDT'}
-                                      {' '}
-                                      {
-                                        item?.settlement?.feeWalletAddress &&
-                                      item?.settlement?.feeWalletAddress?.slice(0, 5) + '...'}
-                                    </span>
-                                    */}
-
                                   </div>
 
                                 </button>
@@ -4830,6 +4815,7 @@ const fetchBuyOrders = async () => {
 
                             </div>
                           </td>
+                          */}
 
 
 
