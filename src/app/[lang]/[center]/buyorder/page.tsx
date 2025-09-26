@@ -210,7 +210,7 @@ export default function Index({ params }: any) {
   //const page = searchParams.get('page') || 1;
 
 
-
+  
   const contract = getContract({
     // the client you have created via `createThirdwebClient()`
     client,
@@ -232,6 +232,33 @@ export default function Index({ params }: any) {
             chain === "polygon" ? polygonContractAddressUSDT :
             chain === "arbitrum" ? arbitrumContractAddressUSDT :
             chain === "bsc" ? bscContractAddressUSDT : arbitrumContractAddressUSDT,
+
+
+    // OPTIONAL: the contract's abi
+    //abi: [...],
+  });
+
+  const contractCKEC = getContract({
+    // the client you have created via `createThirdwebClient()`
+    client,
+    // the chain the contract is deployed on
+    
+    
+    //chain: arbitrum,
+    chain:  chain === "ethereum" ? ethereum :
+            chain === "polygon" ? polygon :
+            chain === "arbitrum" ? arbitrum :
+            chain === "bsc" ? bsc : arbitrum,
+  
+  
+  
+    // the contract's address
+    ///address: contractAddressArbitrum,
+
+    address: chain === "ethereum" ? arbitrumContractAddressCKEC :
+            chain === "polygon" ? arbitrumContractAddressCKEC :
+            chain === "arbitrum" ? arbitrumContractAddressCKEC :
+            chain === "bsc" ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
 
 
     // OPTIONAL: the contract's abi
@@ -516,7 +543,7 @@ export default function Index({ params }: any) {
   
 
 
-
+  /*
   const [balance, setBalance] = useState(0);
   useEffect(() => {
 
@@ -551,7 +578,7 @@ export default function Index({ params }: any) {
     return () => clearInterval(interval);
 
   } , [address, contract]);
-
+  */
 
 
 
@@ -1281,12 +1308,12 @@ export default function Index({ params }: any) {
 
     // check balance
     // send payment request
-
+    /*
     if (balance < amount) {
       toast.error(Insufficient_balance);
       return;
     }
-
+    */
 
     // check all escrowing is false
     if (!isWithoutEscrow && escrowing.some((item) => item === true)) {
@@ -1466,20 +1493,6 @@ export default function Index({ params }: any) {
 
               }
             });
-
-
-            // refresh balance
-
-            const result = await balanceOf({
-              contract,
-              address: address || "",
-            });
-
-            //console.log(result);
-
-            setBalance( Number(result) / 10 ** 6 );
-
-
           
 
           } else {
@@ -1604,18 +1617,6 @@ export default function Index({ params }: any) {
 
             }
           });
-
-
-          // refresh balance
-
-          const result = await balanceOf({
-            contract,
-            address: address || "",
-          });
-
-          //console.log(result);
-
-          setBalance( Number(result) / 10 ** 6 );
 
 
         } else {
@@ -1956,10 +1957,35 @@ export default function Index({ params }: any) {
 
     // check balance
     // if balance is less than paymentAmount, then return
+    /*
     if (balance < usdtAmount) {
       toast.error(Insufficient_balance);
       return;
     }
+    */
+
+
+    let balance = 0;
+    const result = await balanceOf({
+      contract: contractCKEC,
+      address: activeAccount?.address as string,
+    });
+    if (result) {
+      balance = Number(result) / 10 ** 18;
+    }
+
+    if (balance < usdtAmount) {
+      toast.error(Insufficient_balance);
+      return;
+    }
+
+
+
+
+
+
+
+
 
     const storecode = "admin";
 
@@ -3859,14 +3885,14 @@ const fetchBuyOrders = async () => {
               </div>
             </div>
 
-            {/* 판매용 USDT지갑 */}
+            {/* 판매용 지갑주소 */}
             {/* storeInfo.walletAddress */}
             <div className="flex flex-col sm:flex-row items-start xl:items-end gap-1">
               <div className="flex flex-row gap-2 items-center">
                 {/* dot */}
                 <div className="w-1 h-1 rounded-full bg-zinc-500" /> 
                 <span className="text-sm text-zinc-500">
-                  P2P 거래소 판매용 USDT지갑
+                  P2P 거래소 판매용 지갑주소
                 </span>
               </div>
               <div className="flex flex-row items-center justify-center gap-1">
@@ -3886,14 +3912,14 @@ const fetchBuyOrders = async () => {
               </div>
             </div>
 
-            {/* 자동결제용 USDT지갑 */}
+            {/* 자동결제용 지갑주소 */}
             {/* store.settlementWalletAddress */}
             <div className="flex flex-col sm:flex-row items-start xl:items-end gap-1">
               <div className="flex flex-row gap-2 items-center">
                 {/* dot */}
                 <div className="w-1 h-1 rounded-full bg-zinc-500" />
                 <span className="text-sm text-zinc-500">
-                  가맹점 자동결제용 USDT지갑
+                  가맹점 자동결제용 지갑주소
                 </span>
               </div>
               <div className="flex flex-row items-center justify-center gap-1">
@@ -3926,7 +3952,7 @@ const fetchBuyOrders = async () => {
                         <div className="flex flex-row gap-2 items-center">
                           <div className="w-1 h-1 rounded-full bg-zinc-500" />
                           <span className="text-sm text-zinc-500">
-                            나의 USDT지갑
+                            나의 지갑주소
                           </span>
                         </div>
 
@@ -4867,14 +4893,14 @@ const fetchBuyOrders = async () => {
                     <th className="p-2">
                       <div className="flex flex-col items-start justify-center gap-2">
                         <span>P2P구매자 아이디</span>
-                        <span>USDT지갑</span>
+                        <span>지갑주소</span>
                         <span>입금자</span>
                       </div>
                     </th>
                     
                     <th className="p-2">
                       <div className="flex flex-col items-end justify-center gap-2">
-                        <span>구매량(USDT)</span>
+                        <span>구매량</span>
                         <span>구매금액(원)</span>
                         <span>개당금액(원)</span>
                       </div>
@@ -4891,7 +4917,7 @@ const fetchBuyOrders = async () => {
                           P2P판매자 아이디
                         </span>
                         <span className="text-sm text-zinc-50 font-semibold">
-                          USDT지갑
+                          지갑주소
                         </span>
                         <div className="flex flex-row items-center justify-center gap-2">
                           <span>자동매칭</span>
@@ -4964,11 +4990,11 @@ const fetchBuyOrders = async () => {
                       </div>
                     </th>
 
+                    {/*
                     <th className="
                       p-2">
                       <div className="flex flex-col items-center justify-center gap-2">
                         <div className="flex flex-row items-center justify-center gap-2">
-                          {/* storeLogo */}
                           <Image
                             src={store?.storeLogo || "/icon-store.png"}
                             alt="Store"
@@ -5004,6 +5030,7 @@ const fetchBuyOrders = async () => {
                       </div>
 
                     </th>
+                    */}
                     
 
                   </tr>
@@ -7054,7 +7081,7 @@ const fetchBuyOrders = async () => {
 
                       </td>
 
-
+                      {/*
                       <td className="p-2">
                         <div className="w-full  flex flex-col gap-2 items-center justify-center
                           bg-zinc-50 p-4 rounded-lg shadow-sm">
@@ -7065,7 +7092,6 @@ const fetchBuyOrders = async () => {
                             !item?.settlement && (
 
                             <div className="flex flex-col gap-2">
-                              {/* 자동결제 지갑주소 */}
 
                               <div className="w-full flex flex-row gap-2 items-center justify-start">
                                 <span className="text-sm font-semibold text-zinc-500">
@@ -7089,7 +7115,6 @@ const fetchBuyOrders = async () => {
                                 </span>
                               </div>
 
-                              {/* info P2P 거래완료후 자동으로 결제와 정산을 진행합니다. */}
                               <div className="flex flex-row gap-1 items-center">
                                 <Image
                                   src="/icon-info.png"
@@ -7124,7 +7149,7 @@ const fetchBuyOrders = async () => {
                                 </span>
 
                                 <div className="flex flex-row gap-1 items-center">
-                                  {/* image for usdt and chain image */}
+
                                   <Image
                                     src="/icon-tether.png"
                                     alt="USDT Icon"
@@ -7141,21 +7166,6 @@ const fetchBuyOrders = async () => {
                                   />
                                 </div>
                               </div>
-                              {/*
-                              <div className="flex flex-row gap-1 items-center">
-                                <span className="text-sm font-semibold text-zinc-500">
-                                  지갑잔액:
-                                </span>
-                                <span className="text-lg font-semibold text-green-600"
-                                  style={{
-                                    fontFamily: 'monospace',
-                                  }}>
-                                  {item?.settlement?.settlementWalletBalance &&
-                                    `${Number(item?.settlement?.settlementWalletBalance).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
-                                  }
-                                </span>
-                              </div>
-                              */}
 
                             </div>
 
@@ -7181,40 +7191,6 @@ const fetchBuyOrders = async () => {
                                   </span>
                                 </div>
 
-                                {/*
-                                <div className="w-full flex flex-row gap-2 items-center justify-center">
-                                  <span className="
-                                  w-16
-                                  text-sm text-zinc-500">
-                                    AG 수수료
-                                  </span>
-                                  <span className="
-                                  w-14 text-end
-                                  text-sm text-zinc-500"
-                                    style={{
-                                      fontFamily: 'monospace',
-                                    }}>
-                                    {Number(item.store?.agentFeePercent ? item.store?.agentFeePercent : 0.0).toFixed(3)}%
-                                  </span>
-                                </div>
-
-                                <div className="w-full flex flex-row gap-2 items-center justify-center">
-                                  <span className="
-                                  w-16
-                                  text-sm text-zinc-500">
-                                    PG 수수료
-                                  </span>
-                                  <span className="
-                                  w-14  text-end
-                                  text-sm text-zinc-500"
-                                    style={{
-                                      fontFamily: 'monospace',
-                                    }}>
-                                    {Number(item.store.settlementFeePercent ? item.store.settlementFeePercent : 0.3).toFixed(3)}%
-                                  </span>
-                                </div>
-                                */}
-
                               </div>
                             )}
 
@@ -7225,7 +7201,6 @@ const fetchBuyOrders = async () => {
                               <div className="flex flex-row gap-2 items-center justify-center">
                                 <div className="flex flex-col gap-2 items-center justify-center">
 
-                                  {/* RGB => 175, 228, 171 */}
                                   <button
                                     className="
                                     w-32
@@ -7272,7 +7247,6 @@ const fetchBuyOrders = async () => {
                                         <span>
                                           {Number(item?.settlement?.settlementAmount).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                         </span>
-                                        {/* logo-chain-{chain} */}
                                         <Image
                                           src={`/logo-chain-${chain}.png`}
                                           alt={`Settlement ${chain}`}
@@ -7282,32 +7256,12 @@ const fetchBuyOrders = async () => {
                                         />
 
                                       </div>
-                                      {/*
-                                      <span>
-                                        {
-                                          item?.settlement?.agentFeeAmount ?
-                                          item?.settlement?.agentFeeAmount?.toLocaleString() + ' USDT'
-                                          : '0 USDT'
-                                        }
-                                        {' '}
-                                        {
-                                          item?.settlement?.agentFeeWalletAddress &&
-                                        item?.settlement?.agentFeeWalletAddress?.slice(0, 5) + '...'}
-                                      </span>
-                                      <span>
-                                        {item?.settlement?.feeAmount?.toLocaleString() + ' USDT'}
-                                        {' '}
-                                        {
-                                          item?.settlement?.feeWalletAddress &&
-                                        item?.settlement?.feeWalletAddress?.slice(0, 5) + '...'}
-                                      </span>
-                                      */}
+
 
                                     </div>
 
                                   </button>
 
-                                  {/* https://arbiscan.io/token/0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9?a=0x27819bb55cB09A6Bc1E1a82e7A085A340981039A */}
                                   <div className="flex flex-row items-center justify-center gap-1">
                                     <Image
                                       src="/icon-shield.png"
@@ -7382,35 +7336,6 @@ const fetchBuyOrders = async () => {
                                     {Number(item.krwAmount).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 충전
                                   </span>
                                 </div>
-
-
-                                {/*
-                                <div className="
-                                w-40 
-                                flex flex-col gap-2 items-end justify-center"
-                                >
-                                  <div className="flex flex-row gap-1 items-center justify-center">
-                                    <Image
-                                      src="/icon-user.png"
-                                      alt="User Icon"
-                                      width={20}
-                                      height={20}
-                                      className="w-5 h-5"
-                                    />
-                                    <span className="text-lg font-semibold text-blue-600">
-                                      {item.nickname}
-                                    </span>
-                                  </div>
-                                  <span className="text-sm text-blue-600 font-semibold"
-                                    style={{
-                                      fontFamily: 'monospace',
-                                    }}
-                                  >
-                                    {Number(item.krwAmount).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 충전
-                                  </span>
-                                </div>
-                                */}
-
 
 
                               </div>
@@ -7491,6 +7416,7 @@ const fetchBuyOrders = async () => {
                         </div>
 
                       </td>
+                      */}
 
 
 
