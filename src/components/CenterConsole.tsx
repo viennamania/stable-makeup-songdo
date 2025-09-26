@@ -327,7 +327,7 @@ const CenterConsole = () => {
             text-lg font-semibold text-[#409192]"
             style={{ fontFamily: "monospace" }}
             >
-              {Number(balance).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              {Number(balance).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </div>
 
           </div>

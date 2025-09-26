@@ -2002,7 +2002,7 @@ export default function Index({ params }: any) {
 
 
         const transaction = transfer({
-          contract,
+          contract: contractCKEC,
           to: buyerWalletAddress,
           amount: usdtAmount,
         });
