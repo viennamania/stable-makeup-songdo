@@ -125,7 +125,10 @@ export async function POST(request: NextRequest) {
     }
 
 
-    const sellerStorecode = "admin";
+    ///const sellerStorecode = "admin";
+    const sellerStorecode = storecode || "admin";
+
+
 
     let sellerMemo = "";
 
