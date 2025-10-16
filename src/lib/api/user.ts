@@ -87,16 +87,7 @@ export async function insertOne(data: any) {
 
   if (data.buyer.depositBankAccountNumber) {
     depositBankAccountNumber = data.buyer.depositBankAccountNumber.replace(/[^0-9]/g, '');
-  } else {
-    return {
-      result: null,
-      error: 'depositBankAccountNumber is required',
-    }
   }
-
-  
-
-  console.log('depositBankAccountNumber: ' + depositBankAccountNumber);
 
   const depositBankName = data.buyer.depositBankName;
   const depositName = data.buyer.depositName;
