@@ -7,11 +7,15 @@ import {
 import {
   createThirdwebClient,
   getContract,
+  sendTransaction,
 } from "thirdweb";
 
 
 
-import { balanceOf } from "thirdweb/extensions/erc20";
+import {
+  balanceOf,
+  transfer,
+} from "thirdweb/extensions/erc20";
  
 import {
   ethereum,
@@ -31,7 +35,13 @@ import {
 } from "@/app/config/contractAddresses";
 
 
+import {
+  privateKeyToAccount,
+ } from "thirdweb/wallets";
 
+
+// MINT_WALLET_PRIVATE_KEY
+const mintWalletPrivateKey = process.env.MINT_WALLET_PRIVATE_KEY || "";
 
 
 export async function POST(request: NextRequest) {
@@ -43,25 +53,21 @@ export async function POST(request: NextRequest) {
   const {
     storecode,
     userCode,
+    amount,
   } = body;
 
+  if (!amount || isNaN(amount) || amount <= 0) {
+    return NextResponse.json({
+      error: "Invalid amount",
+    }, { status: 400 });
+  }
 
-  //console.log("walletAddress", walletAddress);
+  if (amount > 1000) {
+    return NextResponse.json({
+      error: "Amount exceeds the maximum limit of 1000 CKEC",
+    }, { status: 400 });
+  }
 
-
-  /*
-  const client = createThirdwebClient({
-    secretKey: process.env.THIRDWEB_SECRET_KEY || "",
-  });
- 
-  const user = await getUser({
-    client,
-    walletAddress: walletAddress,
-    //walletAddress: "0xF1b051dceb3Aab2f8e35805F134e373b709382aA", // For testing purposes
-  });
-
-  console.log("user", user);
-  */
 
 
   const result = await getOneByNickname(
@@ -111,6 +117,7 @@ export async function POST(request: NextRequest) {
   });
 
 
+  /*
   const resultBalance = await balanceOf({
     contract,
     address: walletAddress,
@@ -118,28 +125,52 @@ export async function POST(request: NextRequest) {
 
 
   const balance = Number(resultBalance) / 10 ** 18;
-
-
-
-
-
-  /*
-  {
-    result: {
-      nickname: '0xe38A3D8786924E2c1C427a4CA5269e6C9D37BC9C',
-      balance: 2342.65
-    }
-  }
   */
- 
-  return NextResponse.json({
 
-    result: {
-      nickname: userCode,
-      balance: balance,
-      embeddedWalletAddress: walletAddress,
+
+
+  // transfer from mint wallet to user's wallet
+  try {
+
+    const account = privateKeyToAccount({
+      client,
+      privateKey: mintWalletPrivateKey,
+    });
+
+    if (!account) {
+      return NextResponse.json({
+        error: "Mint wallet account not found",
+      }, { status: 500 });
     }
+
+    const transaction = transfer({
+      contract,
+      to: walletAddress,
+      amount: amount,
+    });
+
+    const { transactionHash } = await sendTransaction({
+      account,
+      transaction,
+    });
+
+
+    return NextResponse.json({
+
+      result: {
+        nickname: userCode,
+        mintedAmount: amount,
+        transactionHash: transactionHash,
+        embeddedWalletAddress: walletAddress,
+      }
     
-  });
+    });
+
+  } catch (error) {
+    console.error("Minting error:", error);
+    return NextResponse.json({
+      error: "Minting failed",
+    }, { status: 500 });
+  }
   
 }
