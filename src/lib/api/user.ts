@@ -183,6 +183,8 @@ export async function insertOne(data: any) {
       },
 
       userType: data.userType,
+
+      accessToken: data.accessToken,
     }
   );
 
@@ -2135,4 +2137,23 @@ export async function getAllAdmin(
 
 
 
+
+// updateAccessTokenByWalletAddress
+export async function updateAccessTokenByWalletAddress(
+  walletAddress: string,
+  accessToken: string,
+) {
+  const client = await clientPromise;
+  const collection = client.db(dbName).collection('users');
+
+  return await collection.updateOne(
+    { walletAddress },
+    {
+      $set: {
+        accessToken,
+      }
+    }
+  );
+
+}
 

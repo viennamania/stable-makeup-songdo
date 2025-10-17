@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import {
   getUserByNickname,
 	insertOne,
+  updateAccessTokenByWalletAddress,
 } from '@lib/api/user';
 
 import {
@@ -110,6 +111,12 @@ export async function POST(request: NextRequest) {
     */
 
 
+    // generate random string for accessToken
+    const accessToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+
+
+
 
     // find user by nickname
     const user = await getUserByNickname(
@@ -121,12 +128,29 @@ export async function POST(request: NextRequest) {
     ///console.log("user", user);
 
     if (user) {
+
+      // updateAccessTokenByWalletAddress
+      const returnValue = await updateAccessTokenByWalletAddress(
+        user.walletAddress,
+        accessToken,
+      );
+
+      if (!returnValue) {
+        return NextResponse.json({
+          error: "Failed to update access token",
+        }, { status: 500 });
+      }
+
+
+
+
       return NextResponse.json({
         result: "User already exists",
         walletAddress: user.walletAddress,
         storecode: user?.storecode,
         buyOrderStatus: user?.buyOrderStatus,
         userType: user?.userType || '',
+        accessToken: accessToken,
       });
     }
 
@@ -211,6 +235,7 @@ export async function POST(request: NextRequest) {
       password: password,
       buyer: buyer,
       userType: userType,
+      accessToken: accessToken,
     });
 
     // return wallet address to user
@@ -220,7 +245,7 @@ export async function POST(request: NextRequest) {
       result,
       walletAddress: userWalletAddress,
       userType: userType,
-      
+      accessToken: accessToken,
     });
 
 
