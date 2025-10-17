@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
 
 
 
-  // transfer from mint wallet to user's wallet
+  // transfer from my wallet to user's wallet
   try {
 
     const personalAccount = privateKeyToAccount({
@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
 
     if (!personalAccount) {
       return NextResponse.json({
-        error: "Mint wallet account not found",
+        error: "wallet account not found",
       }, { status: 500 });
     }
 
@@ -211,9 +211,9 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error("Minting error:", error);
+    console.error("Send error:", error);
     return NextResponse.json({
-      error: "Minting failed",
+      error: "Send failed",
     }, { status: 500 });
   }
   
