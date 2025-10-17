@@ -243,6 +243,7 @@ export async function insertOne(data: any) {
       storecode: data.storecode,
       walletAddress: data.walletAddress,
       mobile: data.mobile,
+      buyer: data.buyer,
     };
   } else {
     return null;

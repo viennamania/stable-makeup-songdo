@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
     depositName: userName,
   };
 
+  console.log("buyer", buyer);
 
 
   try {

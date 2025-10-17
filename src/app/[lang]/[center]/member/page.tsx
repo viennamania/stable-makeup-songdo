@@ -2777,12 +2777,15 @@ export default function Index({ params }: any) {
                     >
                       <tr>
                         <th className="p-2">등록일</th>
-                        <th className="p-2">회원 아이디</th>
+                        <th className="p-2">
+                          회원 아이디
+                          <br />
+                          회원 이름(입금자명)
+                        </th>
                         {/*
                         <th className="p-2">회원등급</th>
                         <th className="p-2">회원 통장</th>
                         */}
-                        <th className="p-2">회원 이름</th>
                         <th className="p-2">구매수(건)</th>
                         <th className="p-2 text-right">
                           구매량
@@ -2821,8 +2824,18 @@ export default function Index({ params }: any) {
                           </td>
 
                           <td className="p-2">
-                            <div className="w-24 flex flex-col items-center justify-center gap-1">
-                              {item.nickname}
+                            <div className="w-32 flex flex-col items-center justify-center gap-1">
+                              <span className="text-lg text-zinc-700">
+                              {
+                                item.nickname.length > 10 ?
+                                item.nickname.slice(0, 5) + '...' + item.nickname.slice(-5)
+                                :
+                                item.nickname
+                              }
+                              </span>
+                              <span className="text-lg text-zinc-700">
+                                {item?.buyer?.depositName || '-'}
+                              </span>
                             </div>
                           </td>
 
@@ -2917,12 +2930,7 @@ export default function Index({ params }: any) {
                             </div>
                           </td>
                           */}
-                          
-                          <td className="p-2">
-                            <div className="w-24 flex flex-col items-center justify-center gap-1">
-                              {item?.buyer?.depositName || '-'}
-                            </div>
-                          </td>
+
 
 
 
