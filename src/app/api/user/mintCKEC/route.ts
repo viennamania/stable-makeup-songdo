@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import {
 	getOneByNickname,
+  checkAccessTokenByWalletAddress,
 } from '@lib/api/user';
 
 import {
@@ -51,10 +52,17 @@ export async function POST(request: NextRequest) {
   //console.log("body", body);
 
   const {
+    accessToken,
     storecode,
     userCode,
     amount,
   } = body;
+
+  if (!accessToken) {
+    return NextResponse.json({
+      error: "Missing access token",
+    }, { status: 400 });
+  }
 
   if (!amount || isNaN(amount) || amount <= 0) {
     return NextResponse.json({
@@ -80,6 +88,14 @@ export async function POST(request: NextRequest) {
       error: "User not found",
     }, { status: 404 });
   }
+
+
+  if (!await checkAccessTokenByWalletAddress(result.walletAddress, accessToken)) {
+    return NextResponse.json({
+      error: "Invalid access token",
+    }, { status: 401 });
+  }
+
 
   const walletAddress = result.walletAddress;
 

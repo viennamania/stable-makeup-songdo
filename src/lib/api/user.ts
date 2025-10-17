@@ -2157,3 +2157,26 @@ export async function updateAccessTokenByWalletAddress(
 
 }
 
+
+// checkAccessTokenByWalletAddress
+export async function checkAccessTokenByWalletAddress(
+  walletAddress: string,
+  accessToken: string,
+): Promise<boolean> {
+  const client = await clientPromise;
+  const collection = client.db(dbName).collection('users');
+
+  const results = await collection.findOne<UserProps>(
+    {
+      walletAddress,
+      accessToken,
+    },
+    { projection: { _id: 0, emailVerified: 0 } }
+  );
+
+  if (results) {
+    return true;
+  } else {
+    return false;
+  }
+}
