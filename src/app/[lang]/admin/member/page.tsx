@@ -2820,7 +2820,17 @@ export default function Index({ params }: any) {
                                 w-1/2
                                 text-lg font-semibold">
 
-                                {item.nickname}<br/>
+                                {
+                                item.nickname.length > 10 ?
+                                (
+                                  item.nickname.substring(0, 5) + '...' + item.nickname.substring(item.nickname.length - 5)
+                                )
+                                :
+                                (
+                                  item.nickname
+                                )
+                                }
+                                <br/>
                                 (
                                   {item?.userType === ''
                                   ? '일반 회원'

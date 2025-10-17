@@ -262,10 +262,10 @@ export default function Index({ params }: any) {
     // the contract's address
     ///address: contractAddressArbitrum,
 
-    address: chain === "ethereum" ? ethereumContractAddressUSDT :
-            chain === "polygon" ? polygonContractAddressUSDT :
-            chain === "arbitrum" ? arbitrumContractAddressUSDT :
-            chain === "bsc" ? bscContractAddressUSDT : arbitrumContractAddressUSDT,
+    address: chain === "ethereum" ? arbitrumContractAddressCKEC :
+            chain === "polygon" ? arbitrumContractAddressCKEC :
+            chain === "arbitrum" ? arbitrumContractAddressCKEC :
+            chain === "bsc" ? arbitrumContractAddressCKEC : arbitrumContractAddressCKEC,
 
 
     // OPTIONAL: the contract's abi
@@ -2235,14 +2235,14 @@ getAllBuyOrders result totalAgentFeeAmountKRW 0
   
 
     if (isProcessingSendTransaction) {
-      alert('USDT 전송이 처리중입니다. 잠시후 다시 시도해주세요.');
+      alert('CKEC 전송이 처리중입니다. 잠시후 다시 시도해주세요.');
       return;
     }
 
     ///console.log('sendingTransaction', sendingTransaction);
 
     if (sendingTransaction.some((item) => item === true)) {
-      alert('다른 USDT 전송이 처리중입니다. 잠시후 다시 시도해주세요.');
+      alert('다른 CKEC 전송이 처리중입니다. 잠시후 다시 시도해주세요.');
       return;
     }
 
@@ -2313,13 +2313,13 @@ getAllBuyOrders result totalAgentFeeAmountKRW 0
           ///toast.success(Payment_has_been_confirmed);
           ///playSong();
 
-          ///toast.success('USDT 전송이 완료되었습니다.');
-          alert("USDT 전송이 완료되었습니다.");
+          ///toast.success('CKEC 전송이 완료되었습니다.');
+          alert("CKEC 전송이 완료되었습니다.");
 
 
         } else {
           //toast.error('결제확인이 실패했습니다.');
-          alert('USDT 전송이 실패했습니다.');
+          alert('CKEC 전송이 실패했습니다.');
         }
 
     } catch (error) {
@@ -3596,7 +3596,7 @@ const fetchBuyOrders = async () => {
         <div className="flex flex-col items-start justify-center gap-2 mt-4">
 
 
-          {/* USDT 가격 binance market price */}
+          {/* CKEC 가격 binance market price */}
           {/*
           <div
             className="
@@ -4060,7 +4060,7 @@ const fetchBuyOrders = async () => {
               <div className="flex flex-row items-center justify-center gap-2">
 
                 <div className="flex flex-col gap-2 items-center">
-                  <div className="text-sm">P2P 거래량(USDT)</div>
+                  <div className="text-sm">P2P 거래량(CKEC)</div>
                   <div className="flex flex-row items-center justify-center gap-1">
                     <Image
                       src="/token-ckec-icon.png"
@@ -4120,7 +4120,7 @@ const fetchBuyOrders = async () => {
                 <div className="flex flex-row items-center justify-center gap-2">
 
                   <div className="flex flex-col gap-2 items-center">
-                    <div className="text-sm">가맹점 결제량(USDT)</div>
+                    <div className="text-sm">가맹점 결제량(CKEC)</div>
                     <div className="flex flex-row items-center justify-center gap-1">
                       <Image
                         src="/token-ckec-icon.png"
@@ -4158,7 +4158,7 @@ const fetchBuyOrders = async () => {
                   border-b border-zinc-300 pb-2">
 
                   <div className="flex flex-col gap-2 items-center">
-                    <div className="text-sm">PG 수수료량(USDT)</div>
+                    <div className="text-sm">PG 수수료량(CKEC)</div>
                     <div className="w-full flex flex-row items-center justify-end gap-1">
                       <Image
                         src="/token-ckec-icon.png"
@@ -4194,7 +4194,7 @@ const fetchBuyOrders = async () => {
                 <div className="flex flex-row gap-2 items-center">
 
                   <div className="flex flex-col gap-2 items-center">
-                    <div className="text-sm">AG 수수료량(USDT)</div>
+                    <div className="text-sm">AG 수수료량(CKEC)</div>
                     <div className="w-full flex flex-row items-center justify-end gap-1">
                       <Image
                         src="/token-ckec-icon.png"
@@ -4251,7 +4251,7 @@ const fetchBuyOrders = async () => {
                 </div>
               </div>
               <div className="flex flex-col gap-2 items-center">
-                <div className="text-sm">총 청산수량(USDT)</div>
+                <div className="text-sm">총 청산수량(CKEC)</div>
                 <div className="text-xl font-semibold text-zinc-500">
                   {tradeSummary.totalClearanceAmountUSDT?.toLocaleString()} USDT
                 </div>
@@ -4441,7 +4441,7 @@ const fetchBuyOrders = async () => {
                           P2P구매자 아이디
                         </span>
                         <span className="text-sm text-zinc-50 font-semibold">
-                          USDT지갑
+                          지갑주소
                         </span>
                         <span className="text-sm text-zinc-50 font-semibold">
                           입금자
@@ -4452,7 +4452,7 @@ const fetchBuyOrders = async () => {
                     <th className="p-2 text-end">
                       <div className="flex flex-col items-end justify-center gap-2">
                         <span className="text-sm text-zinc-50 font-semibold">
-                          {Buy_Amount}(USDT)
+                          {Buy_Amount}(CKEC)
                         </span>
                         <span className="text-sm text-zinc-50 font-semibold">
                           구매금액(원)
@@ -4474,7 +4474,7 @@ const fetchBuyOrders = async () => {
                               P2P판매자 아이디
                             </span>
                             <span className="text-sm text-zinc-50 font-semibold">
-                              USDT지갑
+                              지갑주소
                             </span>
                         </div>
 
@@ -4570,12 +4570,12 @@ const fetchBuyOrders = async () => {
                               className="w-5 h-5 animate-spin"
                             />
                             <span className="text-sm">
-                              USDT 전송중...
+                              CKEC 전송중...
                             </span>
                           </div>
                         ) : (
                           <span className="text-sm">
-                            USDT 전송
+                            CKEC 전송
                           </span>
                         )}
                       </div>
@@ -4593,7 +4593,7 @@ const fetchBuyOrders = async () => {
                       <div className="flex flex-col items-center justify-center gap-2">
                         <div className="flex flex-row items-center justify-center gap-2">
                           <span>
-                            가맹점 자동결제 및 정산(USDT)
+                            가맹점 자동결제 및 정산(CKEC)
                           </span>
                           <Image
                             src="/icon-settlement.png"
@@ -6714,7 +6714,7 @@ const fetchBuyOrders = async () => {
                                             `}
                                           />
                                           <span className="text-sm text-white">
-                                            구매자에게 {item.usdtAmount.toFixed(3)} USDT 전송하기
+                                            구매자에게 {item.usdtAmount.toFixed(3)} CKEC 전송하기
                                           </span>
                                         </div>
 
@@ -6796,7 +6796,7 @@ const fetchBuyOrders = async () => {
                                   <div className="flex flex-row gap-1 items-center justify-start">
                                     <Image
                                       src={`/token-ckec-icon.png`}
-                                      alt="USDT Logo"
+                                      alt="CKEC Logo"
                                       width={20}
                                       height={20}
                                       className="w-5 h-5"
@@ -6868,7 +6868,7 @@ const fetchBuyOrders = async () => {
                                   <div className="flex flex-row gap-1 items-center justify-start">
                                     <Image
                                       src={`/token-ckec-icon.png`}
-                                      alt="USDT Logo"
+                                      alt="CKEC Logo"
                                       width={20}
                                       height={20}
                                       className="w-5 h-5"
@@ -7117,7 +7117,7 @@ const fetchBuyOrders = async () => {
                                   {/* image for usdt and chain image */}
                                   <Image
                                     src="/token-ckec-icon.png"
-                                    alt="USDT Icon"
+                                    alt="CKEC Icon"
                                     width={16}
                                     height={16}
                                     className="w-4 h-4 rounded-lg object-cover"
@@ -8304,7 +8304,7 @@ const fetchBuyOrders = async () => {
 
                               <div className="flex flex-col gap-2 items-start">
                                 <span>
-                                  {Waiting_for_seller_to_deposit} {item.usdtAmount} USDT {to_escrow}...
+                                  {Waiting_for_seller_to_deposit} {item.usdtAmount} CKEC {to_escrow}...
                                 </span>
 
                                 <span className="text-sm text-zinc-500">
