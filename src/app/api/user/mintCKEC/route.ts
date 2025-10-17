@@ -70,9 +70,10 @@ export async function POST(request: NextRequest) {
     }, { status: 400 });
   }
 
-  if (amount > 1000) {
+
+  if (amount > 1000000) {
     return NextResponse.json({
-      error: "Amount exceeds the maximum limit of 1000 CKEC",
+      error: "Amount exceeds the maximum limit of 1000000 CKEC",
     }, { status: 400 });
   }
 
