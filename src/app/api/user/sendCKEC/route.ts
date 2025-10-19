@@ -38,6 +38,7 @@ import {
 
 import {
   privateKeyToAccount,
+  smartWallet,
  } from "thirdweb/wallets";
 
 import {
@@ -45,38 +46,30 @@ import {
 } from '@lib/api/client';
 
 
-// MINT_WALLET_PRIVATE_KEY
-const mintWalletPrivateKey = process.env.MINT_WALLET_PRIVATE_KEY || "";
-
-
-
 // isValidIp function
-
 function isValidIp(ip: string): boolean {
   const allowedIps = process.env.ALLOWED_IPS ? process.env.ALLOWED_IPS.split(',') : [];
   return allowedIps.includes(ip);
 }
 
-
 export async function POST(request: NextRequest) {
 
   // check access ip address
-  const clientIp = request.headers.get("x-forwarded-for") || request.ip;
+  const clientIp = request.headers.get("x-forwarded-for") || request.ip || "";
 
   // inser clientIp to database for logging purpose
-
   await insertClientAccessLog(
     clientIp || "unknown",
     "mintCKEC-back",
   );
 
-  /*
   if (!isValidIp(clientIp)) {
     return NextResponse.json({
       error: "Invalid IP address",
     }, { status: 403 });
   }
-  */
+    
+
 
   const body = await request.json();
 
@@ -86,6 +79,7 @@ export async function POST(request: NextRequest) {
     accessToken,
     storecode,
     userCode,
+    toWalletAddress,
     amount,
   } = body;
 
@@ -100,7 +94,6 @@ export async function POST(request: NextRequest) {
       error: "Invalid amount",
     }, { status: 400 });
   }
-
 
   if (amount > 1000000) {
     return NextResponse.json({
@@ -129,7 +122,9 @@ export async function POST(request: NextRequest) {
   }
 
 
+
   const walletAddress = result.walletAddress;
+  const walletPrivateKey = result.walletPrivateKey;
 
 
 
@@ -177,23 +172,48 @@ export async function POST(request: NextRequest) {
 
 
 
-  // transfer from mint wallet to user's wallet
+  // transfer from my wallet to user's wallet
   try {
 
-    const account = privateKeyToAccount({
+    const personalAccount = privateKeyToAccount({
       client,
-      privateKey: mintWalletPrivateKey,
+      privateKey: walletPrivateKey,
+    });
+
+    if (!personalAccount) {
+      return NextResponse.json({
+        error: "wallet account not found",
+      }, { status: 500 });
+    }
+
+    const wallet = smartWallet({
+      chain: chain === "ethereum" ? ethereum :
+             chain === "polygon" ? polygon :
+             chain === "arbitrum" ? arbitrum :
+             chain === "bsc" ? bsc : arbitrum,
+
+      //factoryAddress: "0x655934C0B4bD79f52A2f7e6E60714175D5dd319b", // your own deployed account factory address
+      sponsorGas: true,
+    });
+
+    // Connect the smart wallet
+    const account = await wallet.connect({
+      client: client,
+      personalAccount: personalAccount,
     });
 
     if (!account) {
       return NextResponse.json({
-        error: "Mint wallet account not found",
-      }, { status: 500 });
+        result: null,
+      });
     }
+
+
+
 
     const transaction = transfer({
       contract,
-      to: walletAddress,
+      to: toWalletAddress,
       amount: amount,
     });
 
@@ -207,7 +227,8 @@ export async function POST(request: NextRequest) {
 
       result: {
         nickname: userCode,
-        mintedAmount: amount,
+        amount: amount,
+        toWalletAddress: toWalletAddress,
         transactionHash: transactionHash,
         embeddedWalletAddress: walletAddress,
       }
@@ -215,9 +236,9 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error("Minting error:", error);
+    console.error("Send error:", error);
     return NextResponse.json({
-      error: "Minting failed",
+      error: "Send failed",
     }, { status: 500 });
   }
   
