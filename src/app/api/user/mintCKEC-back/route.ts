@@ -40,12 +40,43 @@ import {
   privateKeyToAccount,
  } from "thirdweb/wallets";
 
+import {
+  insertClientAccessLog,
+} from '@lib/api/client';
+
 
 // MINT_WALLET_PRIVATE_KEY
 const mintWalletPrivateKey = process.env.MINT_WALLET_PRIVATE_KEY || "";
 
 
+
+// isValidIp function
+
+function isValidIp(ip: string): boolean {
+  const allowedIps = process.env.ALLOWED_IPS ? process.env.ALLOWED_IPS.split(',') : [];
+  return allowedIps.includes(ip);
+}
+
+
 export async function POST(request: NextRequest) {
+
+  // check access ip address
+  const clientIp = request.headers.get("x-forwarded-for") || request.ip;
+
+  // inser clientIp to database for logging purpose
+
+  await insertClientAccessLog(
+    clientIp || "unknown",
+    "mintCKEC-back",
+  );
+
+  /*
+  if (!isValidIp(clientIp)) {
+    return NextResponse.json({
+      error: "Invalid IP address",
+    }, { status: 403 });
+  }
+  */
 
   const body = await request.json();
 
