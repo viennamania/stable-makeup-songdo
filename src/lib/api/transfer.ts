@@ -232,4 +232,19 @@ export async function getTransferByWalletAddress(data: any) {
 
 
 
+// getTransferByTransactionHash
+export async function getTransferByTransactionHash(data: any) {
 
+    if (!data.transactionHash) {
+        return null;
+    }
+
+    const client = await clientPromise;
+
+    const collection = client.db(dbName).collection('transfers');
+
+    const transfer = await collection.findOne({ transactionHash: data.transactionHash });
+
+    return transfer;
+
+}
