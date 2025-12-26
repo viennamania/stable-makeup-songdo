@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
 
       result: {
-        nickname: userCode,
+        //nickname: userCode,
         mintedAmount: amount,
         transactionHash: transactionHash,
         embeddedWalletAddress: walletAddress,
