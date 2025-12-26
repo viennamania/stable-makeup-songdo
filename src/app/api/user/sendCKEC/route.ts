@@ -54,13 +54,16 @@ function isValidIp(ip: string): boolean {
 
 export async function POST(request: NextRequest) {
 
+  const body = await request.json();
+
   // check access ip address
   const clientIp = request.headers.get("x-forwarded-for") || request.ip || "";
 
   // inser clientIp to database for logging purpose
   await insertClientAccessLog(
     clientIp || "unknown",
-    "mintCKEC-back",
+    "sendCKEC",
+    body
   );
 
   if (!isValidIp(clientIp)) {
@@ -71,7 +74,7 @@ export async function POST(request: NextRequest) {
     
 
 
-  const body = await request.json();
+
 
   //console.log("body", body);
 

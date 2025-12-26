@@ -28,13 +28,18 @@ export async function upsertOne(clientId: string, data: any) {
 
 
 // insert clientIp to clientAccessLogs collection
-export async function insertClientAccessLog(clientIp: string, action: string) {
+export async function insertClientAccessLog(
+  clientIp: string,
+  action: string,
+  body: any = {}
+) {
   const client = await clientPromise;
   const collection = client.db(dbName).collection('clientAccessLogs');
   const result = await collection.insertOne({
     clientIp: clientIp,
     action: action,
     timestamp: new Date(),
+    body: body,
   });
   return result;
 }
