@@ -86,8 +86,8 @@ export async function POST(request: NextRequest) {
 
   const {
     accessToken,
-    storecode,
-    userCode,
+    //storecode,
+    //userCode,
     amount,
   } = body;
 
@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
   }
 
 
-
+  /*
   const result = await getOneByNickname(
     storecode,
     userCode,
@@ -122,6 +122,7 @@ export async function POST(request: NextRequest) {
       error: "User not found",
     }, { status: 404 });
   }
+  
 
 
   if (!await checkAccessTokenByWalletAddress(result.walletAddress, accessToken)) {
@@ -132,6 +133,11 @@ export async function POST(request: NextRequest) {
 
 
   const walletAddress = result.walletAddress;
+  */
+
+  const walletAddress = "0x2aEA9f2ad8bd716e7976f22fB3cb9d6e6071a2c0";
+
+
 
 
 
